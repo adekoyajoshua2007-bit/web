@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Netra Communities</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:72px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid #e8ecf2;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:800;
+    color:#2563eb;
+    cursor:pointer;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.search{
+    width:330px;
+    height:44px;
+    background:#f1f4f8;
+    border-radius:25px;
+    display:flex;
+    align-items:center;
+    padding:0 16px;
+    gap:10px;
+}
+
+.search i{
+    color:#7b8494;
+}
+
+.search input{
+    border:none;
+    outline:none;
+    background:none;
+    width:100%;
+    font-size:14px;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.nav-btn{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:none;
+    background:#f1f4f8;
+    color:#344054;
+    font-size:18px;
+    transition:.2s;
+}
+
+.nav-btn:hover{
+    background:#e5eaf1;
+    color:#2563eb;
+    transform:translateY(-1px);
+}
+
+.profile-mini{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#edf4ff;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    margin-left:5px;
+}
+
+
+/* ================= LAYOUT ================= */
+
+.layout{
+    display:grid;
+    grid-template-columns:245px 1fr 300px;
+    gap:22px;
+    max-width:1450px;
+    margin:auto;
+    padding:25px;
+}
+
+.main{
+    min-width:0;
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    height:max-content;
+    position:sticky;
+    top:95px;
+}
+
+.side-title{
+    font-size:12px;
+    color:#98a2b3;
+    text-transform:uppercase;
+    margin:5px 12px 12px;
+    font-weight:bold;
+}
+
+.side-link{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:13px;
+    border-radius:12px;
+    margin-bottom:5px;
+    color:#344054;
+    font-weight:600;
+    transition:.2s;
+}
+
+.side-link i{
+    width:24px;
+    font-size:18px;
+    text-align:center;
+}
+
+.side-link:hover{
+    background:#f1f4f8;
+    color:#2563eb;
+}
+
+.side-link.active{
+    background:#edf4ff;
+    color:#2563eb;
+}
+
+
+/* ================= HERO ================= */
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    border-radius:24px;
+    padding:32px;
+    color:white;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:22px;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    right:-60px;
+    top:-80px;
+}
+
+.hero h1{
+    font-size:32px;
+    margin-bottom:10px;
+    position:relative;
+    z-index:2;
+}
+
+.hero p{
+    color:#e7edff;
+    max-width:650px;
+    line-height:1.6;
+    position:relative;
+    z-index:2;
+}
+
+.hero-actions{
+    margin-top:22px;
+    position:relative;
+    z-index:2;
+}
+
+.create-btn{
+    background:white;
+    color:#2563eb;
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.create-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* ================= TABS ================= */
+
+.tabs{
+    background:white;
+    padding:7px;
+    border-radius:15px;
+    display:flex;
+    gap:5px;
+    margin-bottom:22px;
+}
+
+.tab{
+    flex:1;
+    border:none;
+    background:none;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    color:#667085;
+}
+
+.tab:hover{
+    background:#f5f7fa;
+}
+
+.tab.active{
+    background:#edf4ff;
+    color:#2563eb;
+}
+
+
+/* ================= SECTION ================= */
+
+.section-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.section-header h2{
+    font-size:21px;
+}
+
+.section-header span{
+    color:#667085;
+    font-size:13px;
+}
+
+
+/* ================= EMPTY STATE ================= */
+
+.empty-state{
+    background:white;
+    border-radius:20px;
+    padding:70px 25px;
+    text-align:center;
+    border:1px solid #e9edf3;
+}
+
+.empty-icon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+    background:#edf4ff;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+}
+
+.empty-state h3{
+    margin-top:20px;
+    font-size:20px;
+}
+
+.empty-state p{
+    color:#667085;
+    max-width:500px;
+    margin:10px auto 20px;
+    line-height:1.6;
+}
+
+.empty-btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+}
+
+
+/* ================= RIGHTBAR ================= */
+
+.rightbar{
+    height:max-content;
+    position:sticky;
+    top:95px;
+}
+
+.widget{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:18px;
+}
+
+.widget h3{
+    margin-bottom:15px;
+}
+
+.widget-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #edf0f4;
+    cursor:pointer;
+}
+
+.widget-item:last-child{
+    border-bottom:none;
+}
+
+.widget-item:hover{
+    color:#2563eb;
+}
+
+.widget-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:#edf4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#2563eb;
+}
+
+.widget-text{
+    flex:1;
+}
+
+.widget-text strong{
+    display:block;
+    font-size:14px;
+}
+
+.widget-text small{
+    color:#98a2b3;
+}
+
+.invite{
+    background:linear-gradient(135deg,#eef4ff,#f5edff);
+}
+
+.invite p{
+    color:#667085;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.invite button{
+    margin-top:15px;
+    width:100%;
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:11px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(10,20,40,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:5000;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:450px;
+    max-width:100%;
+    background:white;
+    border-radius:22px;
+    padding:25px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#f1f4f8;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d9dee7;
+    border-radius:10px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#2563eb;
+}
+
+.form-group textarea{
+    height:100px;
+    resize:none;
+}
+
+.submit{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:11px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+}
+
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    background:#172033;
+    color:white;
+    padding:14px 20px;
+    border-radius:10px;
+    opacity:0;
+    transform:translateY(20px);
+    pointer-events:none;
+    transition:.3s;
+    z-index:6000;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1150px){
+
+    .layout{
+        grid-template-columns:220px 1fr;
+    }
+
+    .rightbar{
+        display:none;
+    }
+
+}
+
+@media(max-width:800px){
+
+    .layout{
+        grid-template-columns:1fr;
+        padding:15px;
+    }
+
+    .sidebar{
+        position:static;
+        display:flex;
+        overflow-x:auto;
+        gap:5px;
+        padding:10px;
+    }
+
+    .side-title{
+        display:none;
+    }
+
+    .side-link{
+        white-space:nowrap;
+        margin:0;
+    }
+
+    .search{
+        width:220px;
+    }
+
+}
+
+@media(max-width:550px){
+
+    .navbar{
+        padding:0 15px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .search{
+        display:none;
+    }
+
+    .hero{
+        padding:24px;
+    }
+
+    .hero h1{
+        font-size:25px;
+    }
+
+    .tabs{
+        overflow-x:auto;
+    }
+
+    .tab{
+        min-width:120px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="nav-left">
+
+        <div class="logo"
+             onclick="go('HomePage.html')">
+            Netra
+        </div>
+
+        <div class="search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search communities..."
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <!-- HOME -->
+
+        <button
+            class="nav-btn"
+            title="Home"
+            onclick="go('HomePage.html')">
+
+            <i class="fa-solid fa-house"></i>
+
+        </button>
+
+
+        <!-- MESSAGES -->
+
+        <button
+            class="nav-btn"
+            title="Messenger"
+            onclick="go('Messagner.html')">
+
+            <i class="fa-regular fa-message"></i>
+
+        </button>
+
+
+        <!-- SETTINGS -->
+
+        <button
+            class="nav-btn"
+            title="Settings"
+            onclick="go('settings.html')">
+
+            <i class="fa-solid fa-gear"></i>
+
+        </button>
+
+
+        <!-- PROFILE -->
+
+        <div
+            class="profile-mini"
+            title="Profile"
+            onclick="go('profile page.html')">
+
+            <i class="fa-solid fa-user"></i>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<div class="layout">
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="side-title">
+        Navigation
+    </div>
+
+
+    <a class="side-link"
+       href="HomePage.html">
+
+        <i class="fa-solid fa-house"></i>
+        Home
+
+    </a>
+
+
+    <a class="side-link"
+       href="Friendspage.html">
+
+        <i class="fa-solid fa-user-group"></i>
+        Friends
+
+    </a>
+
+
+    <a class="side-link active"
+       href="Group page.html">
+
+        <i class="fa-solid fa-users"></i>
+        Communities
+
+    </a>
+
+
+    <a class="side-link"
+       href="Watch page.html">
+
+        <i class="fa-solid fa-video"></i>
+        Reels
+
+    </a>
+
+
+    <a class="side-link"
+       href="Messagner.html">
+
+        <i class="fa-solid fa-message"></i>
+        Messages
+
+    </a>
+
+
+    <a class="side-link"
+       href="Storepage.html">
+
+        <i class="fa-solid fa-store"></i>
+        Marketplace
+
+    </a>
+
+
+    <a class="side-link"
+       href="profile page.html">
+
+        <i class="fa-solid fa-user"></i>
+        My Profile
+
+    </a>
+
+
+    <a class="side-link"
+       href="settings.html">
+
+        <i class="fa-solid fa-gear"></i>
+        Settings
+
+    </a>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <div id="communityHome">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <h1>
+                Find Your Community
+            </h1>
+
+            <p>
+                Connect with people who share your interests,
+                discover new ideas and build meaningful communities
+                on Netra.
+            </p>
+
+
+            <div class="hero-actions">
+
+                <button
+                    class="create-btn"
+                    onclick="openCreateModal()">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Create Community
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TABS -->
+
+        <div class="tabs">
+
+            <button
+                class="tab active"
+                onclick="switchTab('discover',this)">
+
+                Discover
+
+            </button>
+
+
+            <button
+                class="tab"
+                onclick="switchTab('joined',this)">
+
+                My Communities
+
+            </button>
+
+
+            <button
+                class="tab"
+                onclick="switchTab('popular',this)">
+
+                Popular
+
+            </button>
+
+        </div>
+
+
+
+        <!-- HEADER -->
+
+        <div class="section-header">
+
+            <h2 id="sectionTitle">
+                Discover Communities
+            </h2>
+
+            <span id="communityCount">
+                0 communities
+            </span>
+
+        </div>
+
+
+
+        <!-- EMPTY STATE -->
+
+        <div id="communityContent">
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+                <h3>
+                    Your community journey starts here
+                </h3>
+
+                <p>
+                    There are no communities to display yet.
+                    Search for communities or create your own
+                    and start building your Netra community.
+                </p>
+
+                <button
+                    class="empty-btn"
+                    onclick="openCreateModal()">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Create Community
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- ================= RIGHTBAR ================= -->
+
+<aside class="rightbar">
+
+
+    <div class="widget">
+
+        <h3>
+            Community Tools
+        </h3>
+
+
+        <div
+            class="widget-item"
+            onclick="openCreateModal()">
+
+            <div class="widget-icon">
+
+                <i class="fa-solid fa-plus"></i>
+
+            </div>
+
+            <div class="widget-text">
+
+                <strong>
+                    Create Community
+                </strong>
+
+                <small>
+                    Start your own community
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="widget-item"
+            onclick="showSearch()">
+
+            <div class="widget-icon">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </div>
+
+            <div class="widget-text">
+
+                <strong>
+                    Find Communities
+                </strong>
+
+                <small>
+                    Search for communities
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="widget-item"
+            onclick="go('Friendspage.html')">
+
+            <div class="widget-icon">
+
+                <i class="fa-solid fa-user-group"></i>
+
+            </div>
+
+            <div class="widget-text">
+
+                <strong>
+                    Find Friends
+                </strong>
+
+                <small>
+                    Connect with people
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="widget invite">
+
+        <h3>
+            Build something together 🚀
+        </h3>
+
+        <p>
+            Create a community around your interests,
+            ideas, business or passion.
+        </p>
+
+
+        <button
+            onclick="openCreateModal()">
+
+            Create Community
+
+        </button>
+
+    </div>
+
+</aside>
+
+</div>
+
+
+
+<!-- ================= CREATE COMMUNITY MODAL ================= -->
+
+<div
+    class="modal"
+    id="createModal">
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+            <h2>
+                Create Community
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeCreateModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="createForm">
+
+
+            <div class="form-group">
+
+                <label>
+                    Community Name
+                </label>
+
+                <input
+                    type="text"
+                    id="newName"
+                    placeholder="e.g. Nigerian Entrepreneurs"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="newCategory">
+
+                    <option>Business</option>
+                    <option>Technology</option>
+                    <option>Education</option>
+                    <option>Entertainment</option>
+                    <option>Sports</option>
+                    <option>Photography</option>
+                    <option>Music</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="newDescription"
+                    placeholder="Tell people what your community is about..."
+                    required></textarea>
+
+            </div>
+
+
+            <button
+                class="submit"
+                type="submit">
+
+                Create Community
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+
+<script>
+
+
+/* ================= NAVIGATION ================= */
+
+function go(page){
+
+    window.location.href = page;
+
+}
+
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function showSearch(){
+
+    const search =
+        document.getElementById("search");
+
+    search.focus();
+
+    showToast("Search for a community");
+
+}
+
+
+document
+.getElementById("search")
+.addEventListener("input",function(){
+
+    const value =
+        this.value.trim();
+
+    if(value){
+
+        document
+        .getElementById("sectionTitle")
+        .textContent =
+        "Searching Communities";
+
+    }else{
+
+        updateTabTitle();
+
+    }
+
+});
+
+
+/* ================= TABS ================= */
+
+let currentTab = "discover";
+
+
+function switchTab(tab,button){
+
+    currentTab = tab;
+
+
+    document
+    .querySelectorAll(".tab")
+    .forEach(function(item){
+
+        item.classList.remove("active");
+
+    });
+
+
+    button.classList.add("active");
+
+
+    updateTabTitle();
+
+
+    /*
+        Firebase will later load:
+
+        Discover:
+        → public communities
+
+        My Communities:
+        → communities joined by current user
+
+        Popular:
+        → communities with highest activity
+    */
+
+
+    showEmptyState();
+
+}
+
+
+function updateTabTitle(){
+
+    const title =
+        document.getElementById("sectionTitle");
+
+    if(currentTab === "joined"){
+
+        title.textContent =
+        "My Communities";
+
+    }
+
+    else if(currentTab === "popular"){
+
+        title.textContent =
+        "Popular Communities";
+
+    }
+
+    else{
+
+        title.textContent =
+        "Discover Communities";
+
+    }
+
+}
+
+
+/* ================= EMPTY STATE ================= */
+
+function showEmptyState(){
+
+    const content =
+        document.getElementById("communityContent");
+
+    let title =
+        "Your community journey starts here";
+
+    let text =
+        "There are no communities to display yet.";
+
+    if(currentTab === "joined"){
+
+        title =
+        "You haven't joined any communities";
+
+        text =
+        "When you join a community, it will appear here.";
+
+    }
+
+    else if(currentTab === "popular"){
+
+        title =
+        "No popular communities yet";
+
+        text =
+        "Popular communities will appear here when Netra has active communities.";
+
+    }
+
+
+    content.innerHTML = `
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+            <h3>
+                ${title}
+            </h3>
+
+            <p>
+                ${text}
+            </p>
+
+            <button
+                class="empty-btn"
+                onclick="openCreateModal()">
+
+                <i class="fa-solid fa-plus"></i>
+                Create Community
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ================= CREATE MODAL ================= */
+
+function openCreateModal(){
+
+    document
+    .getElementById("createModal")
+    .classList.add("show");
+
+}
+
+
+function closeCreateModal(){
+
+    document
+    .getElementById("createModal")
+    .classList.remove("show");
+
+}
+
+
+/* ================= CREATE COMMUNITY ================= */
+
+document
+.getElementById("createForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("newName")
+        .value.trim();
+
+    const category =
+        document.getElementById("newCategory")
+        .value;
+
+    const description =
+        document.getElementById("newDescription")
+        .value.trim();
+
+
+    if(!name || !description){
+
+        showToast("Please complete all fields");
+
+        return;
+
+    }
+
+
+    /*
+        This is intentionally NOT creating
+        fake permanent data.
+
+        Firebase will eventually save:
+
+        communityId
+        ownerId
+        name
+        category
+        description
+        createdAt
+        members
+        posts
+    */
+
+
+    closeCreateModal();
+
+    this.reset();
+
+
+    showToast(
+        "Community form completed. Connect Firebase to publish it."
+    );
+
+});
+
+
+/* ================= CLOSE MODAL ================= */
+
+document
+.getElementById("createModal")
+.addEventListener("click",function(event){
+
+    if(event.target === this){
+
+        closeCreateModal();
+
+    }
+
+});
+
+
+/* ================= START ================= */
+
+showEmptyState();
+
+
+</script>
+
+</body>
+</html>

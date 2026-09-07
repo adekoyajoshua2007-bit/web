@@ -1,0 +1,2742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NetraTube</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#635bff;
+    --primary-dark:#5148e8;
+
+    --bg:#f6f7fb;
+    --card:#ffffff;
+
+    --text:#111827;
+    --muted:#6b7280;
+
+    --border:#e5e7eb;
+    --hover:#f1f2f7;
+
+    --danger:#ef4444;
+}
+
+body{
+    font-family:"Inter",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    height:70px;
+
+    background:white;
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+
+    padding:0 24px;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    min-width:240px;
+}
+
+.menu-btn{
+    width:42px;
+    height:42px;
+
+    border:0;
+
+    background:var(--hover);
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-size:17px;
+}
+
+.menu-btn:hover{
+    background:#e7e8ef;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+}
+
+.logo span{
+    color:var(--primary);
+}
+
+/* SEARCH */
+
+.search-area{
+    flex:1;
+
+    display:flex;
+    justify-content:center;
+}
+
+.search-box{
+    width:min(600px,100%);
+
+    height:44px;
+
+    border:1px solid var(--border);
+
+    border-radius:25px;
+
+    background:#fafafa;
+
+    display:flex;
+    align-items:center;
+
+    overflow:hidden;
+}
+
+.search-box:focus-within{
+    border-color:var(--primary);
+    background:white;
+}
+
+.search-box input{
+    flex:1;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    padding:0 18px;
+
+    font-size:14px;
+}
+
+.search-box button{
+    width:55px;
+    height:100%;
+
+    border:0;
+
+    background:var(--hover);
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+.search-box button:hover{
+    background:#e7e8ef;
+}
+
+/* HEADER RIGHT */
+
+.header-actions{
+    min-width:240px;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    gap:10px;
+}
+
+.header-icon{
+    width:42px;
+    height:42px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:var(--hover);
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+.header-icon:hover{
+    color:var(--primary);
+}
+
+.create-btn{
+    border:0;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:11px 17px;
+
+    border-radius:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.create-btn:hover{
+    background:var(--primary-dark);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+
+    top:70px;
+    left:0;
+    bottom:0;
+
+    width:240px;
+
+    background:white;
+
+    border-right:1px solid var(--border);
+
+    padding:18px 12px;
+
+    overflow-y:auto;
+
+    transition:.3s;
+
+    z-index:900;
+}
+
+.sidebar.collapsed{
+    width:76px;
+}
+
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .side-title{
+    display:none;
+}
+
+.sidebar.collapsed .side-link{
+    justify-content:center;
+}
+
+.side-title{
+    color:#9ca3af;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    padding:14px 13px 8px;
+}
+
+.side-link{
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+    width:100%;
+
+    padding:12px 13px;
+
+    margin-bottom:4px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:#374151;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    border:0;
+
+    background:transparent;
+}
+
+.side-link i{
+    width:21px;
+
+    text-align:center;
+
+    font-size:17px;
+}
+
+.side-link:hover{
+    background:var(--hover);
+}
+
+.side-link.active{
+    color:var(--primary);
+
+    background:#eeecff;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:240px;
+
+    min-height:calc(100vh - 70px);
+
+    padding:25px;
+
+    transition:.3s;
+}
+
+.main.expanded{
+    margin-left:76px;
+}
+
+/* ================= CATEGORIES ================= */
+
+.categories{
+    display:flex;
+
+    gap:9px;
+
+    overflow-x:auto;
+
+    padding-bottom:20px;
+}
+
+.category{
+    border:0;
+
+    background:#e9eaf0;
+
+    padding:9px 16px;
+
+    border-radius:20px;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    color:#374151;
+}
+
+.category:hover{
+    background:#dedee7;
+}
+
+.category.active{
+    background:var(--primary);
+
+    color:white;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:55px 25px;
+
+    text-align:center;
+
+    max-width:850px;
+
+    margin:25px auto 45px;
+}
+
+.welcome-icon{
+    width:82px;
+    height:82px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#eeecff;
+
+    color:var(--primary);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:32px;
+}
+
+.welcome h1{
+    font-size:28px;
+
+    margin-bottom:10px;
+}
+
+.welcome p{
+    max-width:600px;
+
+    margin:0 auto 25px;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+.welcome-actions{
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+.primary-btn,
+.secondary-btn{
+    border:0;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.primary-btn{
+    background:var(--primary);
+    color:white;
+}
+
+.primary-btn:hover{
+    background:var(--primary-dark);
+}
+
+.secondary-btn{
+    background:var(--hover);
+    color:#374151;
+}
+
+.secondary-btn:hover{
+    background:#e5e7eb;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    margin-bottom:35px;
+}
+
+.section-header{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:17px;
+}
+
+.section-header h2{
+    font-size:21px;
+}
+
+.see-all{
+    border:0;
+
+    background:none;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+/* ================= VIDEO EMPTY ================= */
+
+.video-empty{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:35px;
+
+    text-align:center;
+}
+
+.video-empty i{
+    font-size:30px;
+
+    color:#9ca3af;
+
+    margin-bottom:12px;
+}
+
+.video-empty h3{
+    margin-bottom:7px;
+}
+
+.video-empty p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+/* ================= VIDEO GRID ================= */
+
+.video-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+    gap:20px;
+}
+
+.video-card{
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.video-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
+}
+
+.thumbnail{
+    height:180px;
+
+    background:#e5e7eb;
+
+    position:relative;
+}
+
+.thumbnail img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+.duration{
+    position:absolute;
+
+    right:9px;
+    bottom:8px;
+
+    background:rgba(0,0,0,.8);
+
+    color:white;
+
+    padding:4px 6px;
+
+    border-radius:5px;
+
+    font-size:11px;
+}
+
+.video-info{
+    padding:13px;
+}
+
+.video-title{
+    font-size:14px;
+
+    line-height:1.45;
+
+    margin-bottom:9px;
+}
+
+.channel{
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+.channel-avatar{
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:#eeecff;
+
+    color:var(--primary);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* ================= UPLOAD MODAL ================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:5000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+
+    max-width:570px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+}
+
+.modal-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    font-size:21px;
+}
+
+.close-btn{
+    width:37px;
+    height:37px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:var(--hover);
+
+    cursor:pointer;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    padding:12px;
+
+    outline:0;
+
+    font-family:inherit;
+
+    font-size:14px;
+}
+
+.form-group textarea{
+    min-height:100px;
+
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:var(--primary);
+}
+
+.file-area{
+    border:2px dashed #d9dbe4;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    text-align:center;
+
+    cursor:pointer;
+}
+
+.file-area:hover{
+    border-color:var(--primary);
+
+    background:#fafaff;
+}
+
+.file-area i{
+    font-size:27px;
+
+    color:var(--primary);
+
+    margin-bottom:8px;
+}
+
+.file-area p{
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+.file-area input{
+    display:none;
+}
+
+.modal-actions{
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.modal-actions button{
+    border:0;
+
+    padding:11px 17px;
+
+    border-radius:9px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.cancel-btn{
+    background:#eeeef2;
+}
+
+.publish-btn{
+    background:var(--primary);
+
+    color:white;
+}
+
+/* ================= PLAYER ================= */
+
+.player-modal{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.88);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:6000;
+}
+
+.player-modal.show{
+    display:flex;
+}
+
+.player{
+    width:min(1000px,100%);
+
+    max-height:95vh;
+
+    overflow:auto;
+
+    background:#111827;
+
+    color:white;
+
+    border-radius:18px;
+}
+
+.player-top{
+    height:60px;
+
+    padding:0 17px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+}
+
+.player-close{
+    width:38px;
+    height:38px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#374151;
+
+    color:white;
+
+    cursor:pointer;
+}
+
+.player-video{
+    width:100%;
+
+    max-height:550px;
+
+    background:black;
+
+    display:block;
+}
+
+.player-info{
+    padding:20px;
+}
+
+.player-info h2{
+    margin-bottom:7px;
+}
+
+.player-info p{
+    color:#9ca3af;
+
+    font-size:13px;
+}
+
+.player-actions{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.player-actions button{
+    border:0;
+
+    background:#374151;
+
+    color:white;
+
+    padding:10px 15px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+}
+
+.player-actions button:hover,
+.player-actions button.active{
+    background:var(--primary);
+}
+
+/* COMMENTS */
+
+.comments{
+    border-top:1px solid #374151;
+
+    padding:20px;
+}
+
+.comments h3{
+    margin-bottom:15px;
+}
+
+.comment-form{
+    display:flex;
+
+    gap:8px;
+}
+
+.comment-form input{
+    flex:1;
+
+    border:0;
+
+    border-radius:9px;
+
+    padding:11px;
+
+    outline:0;
+}
+
+.comment-form button{
+    border:0;
+
+    background:var(--primary);
+
+    color:white;
+
+    border-radius:9px;
+
+    padding:0 17px;
+
+    cursor:pointer;
+}
+
+.comment-list{
+    margin-top:15px;
+}
+
+.comment{
+    padding:10px 0;
+
+    border-bottom:1px solid #374151;
+
+    font-size:13px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+    left:50%;
+
+    transform:translate(-50%,100px);
+
+    background:#111827;
+
+    color:white;
+
+    padding:13px 20px;
+
+    border-radius:10px;
+
+    opacity:0;
+
+    transition:.3s;
+
+    z-index:9999;
+
+    font-size:13px;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+
+    opacity:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1200px){
+
+    .video-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:900px){
+
+    .logo-area{
+        min-width:auto;
+    }
+
+    .header-actions{
+        min-width:auto;
+    }
+
+    .sidebar{
+        width:76px;
+    }
+
+    .sidebar .nav-text,
+    .sidebar .side-title{
+        display:none;
+    }
+
+    .sidebar .side-link{
+        justify-content:center;
+    }
+
+    .main{
+        margin-left:76px;
+    }
+
+    .video-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .create-btn{
+        display:none;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .header{
+        padding:0 12px;
+
+        gap:8px;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .search-area{
+        display:none;
+    }
+
+    .header-icon{
+        display:none;
+    }
+
+    .main{
+        padding:15px;
+
+        margin-left:0;
+    }
+
+    .sidebar{
+        display:none;
+    }
+
+    .welcome{
+        padding:40px 18px;
+    }
+
+    .welcome h1{
+        font-size:23px;
+    }
+
+    .video-grid{
+        grid-template-columns:1fr;
+    }
+
+    .thumbnail{
+        height:220px;
+    }
+
+    .modal-box{
+        padding:18px;
+    }
+
+    .player-modal{
+        padding:0;
+    }
+
+    .player{
+        border-radius:0;
+        height:100%;
+    }
+
+}
+
+/* ================= DARK MODE READY ================= */
+
+body.dark{
+    --bg:#0f1117;
+    --card:#181b23;
+    --text:#f9fafb;
+    --muted:#9ca3af;
+    --border:#292d38;
+    --hover:#222631;
+}
+
+body.dark .header,
+body.dark .sidebar,
+body.dark .welcome,
+body.dark .video-empty,
+body.dark .video-card,
+body.dark .modal-box{
+    background:#181b23;
+    color:#f9fafb;
+}
+
+body.dark .search-box{
+    background:#20232c;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo-area">
+
+        <button
+            class="menu-btn"
+            onclick="toggleSidebar()"
+            title="Menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <div class="logo">
+            Netra<span>Tube</span>
+        </div>
+
+    </div>
+
+
+    <div class="search-area">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search videos and creators..."
+                autocomplete="off">
+
+            <button
+                onclick="searchVideos()"
+                title="Search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button
+            class="header-icon"
+            onclick="showToast('Voice search will be connected to Netra search.')"
+            title="Voice search">
+
+            <i class="fa-solid fa-microphone"></i>
+
+        </button>
+
+
+        <button
+            class="create-btn"
+            onclick="openUpload()">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Create
+
+        </button>
+
+
+        <button
+            class="header-icon"
+            onclick="window.location.href='settings.html'"
+            title="Settings">
+
+            <i class="fa-solid fa-gear"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="side-title">
+        EXPLORE
+    </div>
+
+
+    <button
+        class="side-link active"
+        onclick="filterCategory('all',this)">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span class="nav-text">
+            Home
+        </span>
+
+    </button>
+
+
+    <button
+        class="side-link"
+        onclick="filterCategory('trending',this)">
+
+        <i class="fa-solid fa-fire"></i>
+
+        <span class="nav-text">
+            Trending
+        </span>
+
+    </button>
+
+
+    <button
+        class="side-link"
+        onclick="filterCategory('music',this)">
+
+        <i class="fa-solid fa-music"></i>
+
+        <span class="nav-text">
+            Music
+        </span>
+
+    </button>
+
+
+    <button
+        class="side-link"
+        onclick="filterCategory('gaming',this)">
+
+        <i class="fa-solid fa-gamepad"></i>
+
+        <span class="nav-text">
+            Gaming
+        </span>
+
+    </button>
+
+
+    <button
+        class="side-link"
+        onclick="filterCategory('news',this)">
+
+        <i class="fa-solid fa-newspaper"></i>
+
+        <span class="nav-text">
+            News
+        </span>
+
+    </button>
+
+
+    <div class="side-title">
+        YOUR SPACE
+    </div>
+
+
+    <button
+        class="side-link"
+        onclick="showEmptyFeature('History')">
+
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        <span class="nav-text">
+            History
+        </span>
+
+    </button>
+
+
+    <button
+        class="side-link"
+        onclick="showEmptyFeature('Saved videos')">
+
+        <i class="fa-solid fa-bookmark"></i>
+
+        <span class="nav-text">
+            Saved
+        </span>
+
+    </button>
+
+
+    <button
+        class="side-link"
+        onclick="showEmptyFeature('Liked videos')">
+
+        <i class="fa-solid fa-heart"></i>
+
+        <span class="nav-text">
+            Liked Videos
+        </span>
+
+    </button>
+
+
+    <button
+        class="side-link"
+        onclick="showEmptyFeature('Subscriptions')">
+
+        <i class="fa-solid fa-user-group"></i>
+
+        <span class="nav-text">
+            Subscriptions
+        </span>
+
+    </button>
+
+
+    <div class="side-title">
+        NETRA
+    </div>
+
+
+    <a
+        class="side-link"
+        href="HomePage.html">
+
+        <i class="fa-solid fa-house-user"></i>
+
+        <span class="nav-text">
+            Netra Home
+        </span>
+
+    </a>
+
+
+    <a
+        class="side-link"
+        href="Friendspage.html">
+
+        <i class="fa-solid fa-user-group"></i>
+
+        <span class="nav-text">
+            Friends
+        </span>
+
+    </a>
+
+
+    <a
+        class="side-link"
+        href="Messagner.html">
+
+        <i class="fa-solid fa-message"></i>
+
+        <span class="nav-text">
+            Messages
+        </span>
+
+    </a>
+
+
+    <a
+        class="side-link"
+        href="settings.html">
+
+        <i class="fa-solid fa-gear"></i>
+
+        <span class="nav-text">
+            Settings
+        </span>
+
+    </a>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main" id="main">
+
+    <!-- CATEGORIES -->
+
+    <div class="categories">
+
+        <button
+            class="category active"
+            onclick="filterCategory('all',this)">
+            All
+        </button>
+
+        <button
+            class="category"
+            onclick="filterCategory('music',this)">
+            Music
+        </button>
+
+        <button
+            class="category"
+            onclick="filterCategory('gaming',this)">
+            Gaming
+        </button>
+
+        <button
+            class="category"
+            onclick="filterCategory('news',this)">
+            News
+        </button>
+
+        <button
+            class="category"
+            onclick="filterCategory('education',this)">
+            Education
+        </button>
+
+        <button
+            class="category"
+            onclick="filterCategory('technology',this)">
+            Technology
+        </button>
+
+        <button
+            class="category"
+            onclick="filterCategory('sports',this)">
+            Sports
+        </button>
+
+        <button
+            class="category"
+            onclick="filterCategory('entertainment',this)">
+            Entertainment
+        </button>
+
+    </div>
+
+
+    <!-- NEW USER WELCOME -->
+
+    <section class="welcome" id="welcome">
+
+        <div class="welcome-icon">
+
+            <i class="fa-solid fa-play"></i>
+
+        </div>
+
+
+        <h1>
+            Welcome to NetraTube
+        </h1>
+
+
+        <p>
+            Your space for videos, creators, music, education,
+            entertainment and stories. There are no videos here yet.
+            Be one of the first creators to share something with the
+            Netra community.
+        </p>
+
+
+        <div class="welcome-actions">
+
+            <button
+                class="primary-btn"
+                onclick="openUpload()">
+
+                <i class="fa-solid fa-video"></i>
+
+                Upload Your First Video
+
+            </button>
+
+
+            <button
+                class="secondary-btn"
+                onclick="window.location.href='Friendspage.html'">
+
+                <i class="fa-solid fa-user-group"></i>
+
+                Find People
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- VIDEO SECTION -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2 id="sectionTitle">
+                Videos for you
+            </h2>
+
+            <button
+                class="see-all"
+                onclick="resetVideos()">
+
+                See all
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="video-grid"
+            id="videoGrid">
+
+            <div
+                class="video-empty"
+                style="grid-column:1/-1;">
+
+                <i class="fa-solid fa-video-slash"></i>
+
+                <h3>
+                    No videos yet
+                </h3>
+
+                <p>
+                    Videos from Netra creators will appear here.
+                    You can also upload the first one.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATOR SECTION -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>
+                Creators
+            </h2>
+
+        </div>
+
+
+        <div class="video-empty">
+
+            <i class="fa-solid fa-users"></i>
+
+            <h3>
+                No creators to show yet
+            </h3>
+
+            <p>
+                As creators join NetraTube, their channels and
+                videos will appear here.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= VIDEO PLAYER ================= -->
+
+<div
+    class="player-modal"
+    id="playerModal">
+
+    <div class="player">
+
+        <div class="player-top">
+
+            <strong>
+                NetraTube
+            </strong>
+
+            <button
+                class="player-close"
+                onclick="closeVideo()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <video
+            class="player-video"
+            id="videoPlayer"
+            controls>
+        </video>
+
+
+        <div class="player-info">
+
+            <h2 id="playerTitle">
+                Video
+            </h2>
+
+            <p id="playerChannel">
+                Creator
+            </p>
+
+
+            <div class="player-actions">
+
+                <button
+                    id="likeBtn"
+                    onclick="likeVideo()">
+
+                    <i class="fa-regular fa-thumbs-up"></i>
+
+                    <span id="likeCount">
+                        0
+                    </span>
+
+                </button>
+
+
+                <button
+                    onclick="shareVideo()">
+
+                    <i class="fa-solid fa-share"></i>
+
+                    Share
+
+                </button>
+
+
+                <button
+                    onclick="saveVideo()">
+
+                    <i class="fa-regular fa-bookmark"></i>
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="comments">
+
+            <h3>
+                Comments
+            </h3>
+
+
+            <div class="comment-form">
+
+                <input
+                    id="commentInput"
+                    placeholder="Add a comment...">
+
+                <button
+                    onclick="addComment()">
+
+                    Post
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="comment-list"
+                id="commentList">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= UPLOAD MODAL ================= -->
+
+<div
+    class="modal"
+    id="uploadModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Create on NetraTube
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeUpload()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Video title
+            </label>
+
+            <input
+                id="uploadTitle"
+                type="text"
+                placeholder="Give your video a title">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Category
+            </label>
+
+            <select id="uploadCategory">
+
+                <option value="entertainment">
+                    Entertainment
+                </option>
+
+                <option value="music">
+                    Music
+                </option>
+
+                <option value="gaming">
+                    Gaming
+                </option>
+
+                <option value="education">
+                    Education
+                </option>
+
+                <option value="technology">
+                    Technology
+                </option>
+
+                <option value="sports">
+                    Sports
+                </option>
+
+                <option value="news">
+                    News
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="uploadDescription"
+                placeholder="Tell people about your video..."></textarea>
+
+        </div>
+
+
+        <label class="file-area">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <p>
+                Choose a video from your device
+            </p>
+
+            <p>
+                MP4, WebM or other supported video format
+            </p>
+
+            <input
+                type="file"
+                id="uploadFile"
+                accept="video/*">
+
+        </label>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="cancel-btn"
+                onclick="closeUpload()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                class="publish-btn"
+                onclick="publishVideo()">
+
+                Publish Video
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<script>
+
+/* ==================================================
+   NETRATUBE DATA
+
+   Empty by default for a new user.
+   Firebase will eventually populate this array.
+================================================== */
+
+let videos = [];
+
+let currentVideo = null;
+
+let liked = false;
+
+
+/* ==================================================
+   SIDEBAR
+================================================== */
+
+function toggleSidebar(){
+
+    document
+    .getElementById("sidebar")
+    .classList.toggle("collapsed");
+
+    document
+    .getElementById("main")
+    .classList.toggle("expanded");
+
+}
+
+
+/* ==================================================
+   CATEGORY FILTER
+================================================== */
+
+function filterCategory(category,element){
+
+    document
+    .querySelectorAll(".category")
+    .forEach(button=>{
+        button.classList.remove("active");
+    });
+
+
+    if(element){
+
+        document
+        .querySelectorAll(".side-link")
+        .forEach(link=>{
+            link.classList.remove("active");
+        });
+
+        element.classList.add("active");
+
+    }
+
+
+    const categoryButtons =
+        document.querySelectorAll(".category");
+
+
+    categoryButtons.forEach(button=>{
+
+        if(button.textContent
+        .trim()
+        .toLowerCase()
+        === category.toLowerCase()){
+
+            button.classList.add("active");
+
+        }
+
+    });
+
+
+    if(category === "all"){
+
+        renderVideos(videos);
+
+        document
+        .getElementById("sectionTitle")
+        .textContent =
+        "Videos for you";
+
+        return;
+
+    }
+
+
+    let filtered =
+        videos.filter(video=>
+            video.category === category
+        );
+
+
+    if(category === "trending"){
+
+        filtered =
+        [...videos]
+        .sort(
+            (a,b)=>
+            (b.views || 0) -
+            (a.views || 0)
+        );
+
+    }
+
+
+    document
+    .getElementById("sectionTitle")
+    .textContent =
+    category.charAt(0).toUpperCase()
+    + category.slice(1);
+
+
+    renderVideos(filtered);
+
+}
+
+
+/* ==================================================
+   RENDER VIDEOS
+================================================== */
+
+function renderVideos(list){
+
+    const grid =
+        document.getElementById("videoGrid");
+
+
+    grid.innerHTML = "";
+
+
+    if(!list || list.length === 0){
+
+        grid.innerHTML = `
+
+            <div
+                class="video-empty"
+                style="grid-column:1/-1;">
+
+                <i class="fa-solid fa-video-slash"></i>
+
+                <h3>
+                    No videos yet
+                </h3>
+
+                <p>
+                    ${
+                        videos.length === 0
+                        ?
+                        "Videos from Netra creators will appear here."
+                        :
+                        "There are no videos in this category."
+                    }
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.forEach((video,index)=>{
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "video-card";
+
+
+        card.onclick = () =>
+            openVideo(video);
+
+
+        card.innerHTML = `
+
+            <div class="thumbnail">
+
+                ${
+                    video.thumbnail
+                    ?
+                    `<img
+                        src="${escapeHTML(video.thumbnail)}"
+                        alt="${escapeHTML(video.title)}">`
+                    :
+                    `
+                    <div style="
+                        height:100%;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:#9ca3af;
+                        font-size:35px;
+                    ">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    `
+                }
+
+                ${
+                    video.duration
+                    ?
+                    `<span class="duration">
+                        ${escapeHTML(video.duration)}
+                    </span>`
+                    :
+                    ""
+                }
+
+            </div>
+
+
+            <div class="video-info">
+
+                <h3 class="video-title">
+                    ${escapeHTML(video.title)}
+                </h3>
+
+
+                <div class="channel">
+
+                    <div class="channel-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <span>
+                        ${escapeHTML(video.channel || "Netra Creator")}
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+function searchVideos(){
+
+    const input =
+        document
+        .getElementById("searchInput");
+
+
+    const value =
+        input.value
+        .trim()
+        .toLowerCase();
+
+
+    if(!value){
+
+        renderVideos(videos);
+
+        return;
+
+    }
+
+
+    const results =
+        videos.filter(video=>
+
+            video.title
+            .toLowerCase()
+            .includes(value)
+
+            ||
+
+            (video.channel || "")
+            .toLowerCase()
+            .includes(value)
+
+            ||
+
+            video.category
+            .toLowerCase()
+            .includes(value)
+
+        );
+
+
+    document
+    .getElementById("sectionTitle")
+    .textContent =
+    `Search results for "${input.value}"`;
+
+
+    renderVideos(results);
+
+}
+
+
+document
+.getElementById("searchInput")
+.addEventListener(
+    "input",
+    searchVideos
+);
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+function resetVideos(){
+
+    document
+    .getElementById("searchInput")
+    .value = "";
+
+
+    document
+    .getElementById("sectionTitle")
+    .textContent =
+    "Videos for you";
+
+
+    renderVideos(videos);
+
+}
+
+
+/* ==================================================
+   VIDEO PLAYER
+================================================== */
+
+function openVideo(video){
+
+    currentVideo = video;
+
+    liked = false;
+
+
+    const modal =
+        document
+        .getElementById("playerModal");
+
+
+    const player =
+        document
+        .getElementById("videoPlayer");
+
+
+    player.src =
+        video.videoUrl || video.video || "";
+
+
+    player.poster =
+        video.thumbnail || "";
+
+
+    document
+    .getElementById("playerTitle")
+    .textContent =
+    video.title;
+
+
+    document
+    .getElementById("playerChannel")
+    .textContent =
+    video.channel || "Netra Creator";
+
+
+    document
+    .getElementById("likeCount")
+    .textContent =
+    video.likes || 0;
+
+
+    document
+    .getElementById("commentList")
+    .innerHTML = "";
+
+
+    document
+    .getElementById("likeBtn")
+    .classList.remove("active");
+
+
+    modal.classList.add("show");
+
+
+    if(player.src){
+
+        player
+        .play()
+        .catch(()=>{});
+
+    }
+
+}
+
+
+/* ==================================================
+   CLOSE PLAYER
+================================================== */
+
+function closeVideo(){
+
+    const player =
+        document
+        .getElementById("videoPlayer");
+
+
+    player.pause();
+
+    player.removeAttribute("src");
+
+    player.load();
+
+
+    document
+    .getElementById("playerModal")
+    .classList.remove("show");
+
+}
+
+
+document
+.getElementById("playerModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeVideo();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   LIKE
+================================================== */
+
+function likeVideo(){
+
+    if(!currentVideo){
+
+        return;
+
+    }
+
+
+    if(!currentVideo.likes){
+
+        currentVideo.likes = 0;
+
+    }
+
+
+    liked = !liked;
+
+
+    currentVideo.likes +=
+        liked ? 1 : -1;
+
+
+    document
+    .getElementById("likeCount")
+    .textContent =
+    currentVideo.likes;
+
+
+    document
+    .getElementById("likeBtn")
+    .classList.toggle(
+        "active",
+        liked
+    );
+
+
+    showToast(
+        liked
+        ?
+        "Video liked."
+        :
+        "Like removed."
+    );
+
+}
+
+
+/* ==================================================
+   SHARE
+================================================== */
+
+function shareVideo(){
+
+    if(!currentVideo){
+
+        return;
+
+    }
+
+
+    const title =
+        currentVideo.title;
+
+
+    if(navigator.share){
+
+        navigator.share({
+
+            title:title,
+
+            text:
+            `Watch "${title}" on NetraTube`,
+
+            url:
+            window.location.href
+
+        })
+        .catch(()=>{});
+
+        return;
+
+    }
+
+
+    if(navigator.clipboard){
+
+        navigator.clipboard
+        .writeText(
+            window.location.href
+        );
+
+        showToast(
+            "Video link copied."
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveVideo(){
+
+    if(!currentVideo){
+
+        return;
+
+    }
+
+
+    showToast(
+        "Saved to your NetraTube library."
+    );
+
+}
+
+
+/* ==================================================
+   COMMENTS
+================================================== */
+
+function addComment(){
+
+    const input =
+        document
+        .getElementById("commentInput");
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+
+        showToast(
+            "Write a comment first."
+        );
+
+        return;
+
+    }
+
+
+    const list =
+        document
+        .getElementById("commentList");
+
+
+    const comment =
+        document.createElement("div");
+
+
+    comment.className =
+        "comment";
+
+
+    comment.innerHTML = `
+
+        <strong>
+            You
+        </strong>
+
+        <p style="margin-top:5px;color:#d1d5db;">
+            ${escapeHTML(text)}
+        </p>
+
+    `;
+
+
+    list.appendChild(comment);
+
+
+    input.value = "";
+
+
+    showToast(
+        "Comment added."
+    );
+
+}
+
+
+/* ==================================================
+   UPLOAD
+================================================== */
+
+function openUpload(){
+
+    document
+    .getElementById("uploadModal")
+    .classList.add("show");
+
+}
+
+
+function closeUpload(){
+
+    document
+    .getElementById("uploadModal")
+    .classList.remove("show");
+
+}
+
+
+function publishVideo(){
+
+    const title =
+        document
+        .getElementById("uploadTitle")
+        .value.trim();
+
+
+    const category =
+        document
+        .getElementById("uploadCategory")
+        .value;
+
+
+    const description =
+        document
+        .getElementById("uploadDescription")
+        .value.trim();
+
+
+    const file =
+        document
+        .getElementById("uploadFile")
+        .files[0];
+
+
+    if(!title || !file){
+
+        showToast(
+            "Add a title and choose a video."
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Temporary browser preview.
+
+        Firebase Storage will replace this
+        with a permanent download URL.
+    */
+
+    const videoURL =
+        URL.createObjectURL(file);
+
+
+    const newVideo = {
+
+        id:Date.now(),
+
+        title:title,
+
+        description:description,
+
+        category:category,
+
+        channel:"You",
+
+        videoUrl:videoURL,
+
+        thumbnail:"",
+
+        duration:"",
+
+        views:0,
+
+        likes:0,
+
+        createdAt:
+        new Date()
+
+    };
+
+
+    videos.unshift(newVideo);
+
+
+    renderVideos(videos);
+
+
+    document
+    .getElementById("welcome")
+    .style.display = "none";
+
+
+    document
+    .getElementById("uploadTitle")
+    .value = "";
+
+
+    document
+    .getElementById("uploadDescription")
+    .value = "";
+
+
+    document
+    .getElementById("uploadFile")
+    .value = "";
+
+
+    closeUpload();
+
+
+    showToast(
+        "Video added for this browser session."
+    );
+
+}
+
+
+/* ==================================================
+   EMPTY FEATURES
+================================================== */
+
+function showEmptyFeature(feature){
+
+    showToast(
+        `${feature} is ready for your Netra account.`
+    );
+
+}
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(value){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value ?? "";
+
+    return div.innerHTML;
+
+}
+
+
+/* ==================================================
+   TOAST
+================================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+
+    window.toastTimer =
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2600);
+
+}
+
+
+/* ==================================================
+   CLOSE MODAL WITH ESC
+================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeUpload();
+
+            closeVideo();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   INITIAL LOAD
+================================================== */
+
+renderVideos(videos);
+
+</script>
+
+</body>
+</html>

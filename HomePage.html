@@ -1,0 +1,3353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Netra — Connect. Share. Belong.</title>
+<script src="netra-settings.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* =====================================================
+   NETRA MODERN REDESIGN
+===================================================== */
+
+:root{
+    --primary:#635bff;
+    --primary-dark:#5148e8;
+    --secondary:#8b5cf6;
+    --accent:#06b6d4;
+
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#7b8498;
+    --border:#e8ebf2;
+
+    --shadow:0 10px 35px rgba(30,41,59,.07);
+    --radius:22px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+    transition:.3s;
+}
+
+button,
+input,
+textarea{
+    font-family:inherit;
+}
+
+/* =====================================================
+   TOP NAVBAR
+===================================================== */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    height:74px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 28px;
+
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid var(--border);
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:-1px;
+
+    color:var(--text);
+}
+
+.logo-mark{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    color:white;
+
+    background:
+    linear-gradient(135deg,
+    var(--primary),
+    var(--secondary));
+
+    box-shadow:0 7px 18px rgba(99,91,255,.3);
+}
+
+.logo-mark i{
+    font-size:18px;
+}
+
+/* SEARCH */
+
+.search-box{
+    width:330px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 16px;
+    gap:10px;
+
+    background:#f1f3f8;
+
+    border:1px solid transparent;
+    border-radius:14px;
+
+    position:relative;
+
+    transition:.25s;
+}
+
+.search-box:focus-within{
+    background:#fff;
+    border-color:#d9d7ff;
+    box-shadow:0 0 0 4px rgba(99,91,255,.08);
+}
+
+.search-box i{
+    color:#9299a9;
+}
+
+.search-box input{
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    color:var(--text);
+}
+
+.search-results{
+    position:absolute;
+
+    top:52px;
+    left:0;
+
+    width:100%;
+
+    background:white;
+
+    border:1px solid var(--border);
+    border-radius:18px;
+
+    padding:8px;
+
+    display:none;
+
+    box-shadow:var(--shadow);
+}
+
+.search-user{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:11px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+}
+
+.search-user:hover{
+    background:#f5f6fb;
+}
+
+.search-user img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+/* NAV ICONS */
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.nav-button{
+    width:43px;
+    height:43px;
+
+    border:none;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f1f3f8;
+    color:#555e72;
+
+    cursor:pointer;
+
+    position:relative;
+
+    transition:.25s;
+}
+
+.nav-button:hover{
+    color:var(--primary);
+    background:#ecebff;
+    transform:translateY(-2px);
+}
+
+.nav-button i{
+    font-size:17px;
+}
+
+.badge{
+    position:absolute;
+
+    top:-4px;
+    right:-4px;
+
+    width:18px;
+    height:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#ff4d6d;
+    color:white;
+
+    font-size:9px;
+    font-weight:700;
+
+    border-radius:50%;
+
+    border:2px solid white;
+}
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+
+.container{
+    max-width:1500px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:245px minmax(450px,680px) 300px;
+
+    justify-content:center;
+
+    gap:24px;
+
+    padding:25px 20px 50px;
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+    position:sticky;
+    top:98px;
+
+    height:max-content;
+
+    padding:18px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+}
+
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:10px;
+    margin-bottom:15px;
+}
+
+.profile-mini img{
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.profile-mini h4{
+    font-size:14px;
+}
+
+.profile-mini span{
+    font-size:11px;
+    color:var(--muted);
+}
+
+.sidebar-line{
+    height:1px;
+    background:var(--border);
+
+    margin:10px 0 15px;
+}
+
+.sidebar-link{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    width:100%;
+
+    padding:13px 12px;
+
+    margin-bottom:5px;
+
+    border:none;
+    border-radius:13px;
+
+    background:transparent;
+
+    color:#596276;
+
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.sidebar-link i{
+    width:22px;
+    text-align:center;
+
+    font-size:17px;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active{
+    background:linear-gradient(
+        135deg,
+        #eeedff,
+        #f5efff
+    );
+
+    color:var(--primary);
+}
+
+.sidebar-title{
+    font-size:10px;
+    font-weight:800;
+
+    color:#a1a8b8;
+
+    letter-spacing:1px;
+
+    margin:20px 10px 8px;
+}
+
+/* =====================================================
+   STORIES
+===================================================== */
+
+.stories{
+    display:flex;
+    gap:13px;
+
+    overflow-x:auto;
+
+    padding:3px 2px 15px;
+
+    scrollbar-width:none;
+}
+
+.stories::-webkit-scrollbar{
+    display:none;
+}
+
+.story{
+    min-width:92px;
+
+    cursor:pointer;
+
+    text-align:center;
+}
+
+.story-avatar{
+    width:78px;
+    height:78px;
+
+    padding:3px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #635bff,
+        #c084fc,
+        #06b6d4
+    );
+}
+
+.story-avatar img,
+.story-avatar video{
+    width:100%;
+    height:100%;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid white;
+}
+
+.story-name{
+    margin-top:7px;
+
+    font-size:11px;
+    font-weight:600;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.add-story .story-avatar{
+    background:#eef0f5;
+
+    position:relative;
+}
+
+.add-story .story-avatar img{
+    opacity:.65;
+}
+
+.plus{
+    position:absolute;
+
+    right:-3px;
+    bottom:-3px;
+
+    width:27px;
+    height:27px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:var(--primary);
+    color:white;
+
+    border:3px solid white;
+}
+
+/* =====================================================
+   COMPOSER
+===================================================== */
+
+.composer{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    box-shadow:var(--shadow);
+}
+
+.composer-top{
+    display:flex;
+    gap:13px;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+
+    flex:none;
+
+    border-radius:50%;
+
+    object-fit:cover;
+}
+
+.composer textarea{
+    width:100%;
+    min-height:80px;
+
+    resize:none;
+
+    border:none;
+    outline:none;
+
+    background:#f5f6fa;
+
+    border-radius:16px;
+
+    padding:15px;
+
+    font-size:14px;
+
+    color:var(--text);
+}
+
+.composer-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-top:14px;
+
+    padding-top:14px;
+
+    border-top:1px solid var(--border);
+}
+
+.composer-options{
+    display:flex;
+    gap:7px;
+}
+
+.composer-option{
+    border:none;
+
+    background:transparent;
+
+    color:#697286;
+
+    padding:9px 11px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.composer-option:hover{
+    background:#f2f3f8;
+    color:var(--primary);
+}
+
+.post-button{
+    border:none;
+
+    padding:10px 22px;
+
+    border-radius:11px;
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    box-shadow:0 7px 16px rgba(99,91,255,.22);
+
+    transition:.2s;
+}
+
+.post-button:hover{
+    transform:translateY(-2px);
+}
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+.preview{
+    width:100%;
+
+    max-height:420px;
+
+    object-fit:cover;
+
+    margin-top:14px;
+
+    border-radius:16px;
+
+    display:none;
+}
+
+/* =====================================================
+   POSTS
+===================================================== */
+
+.post{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    box-shadow:var(--shadow);
+}
+
+.post-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.post-user{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.post-user img{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+}
+
+.post-user h4{
+    font-size:14px;
+}
+
+.post-user small{
+    color:#9299a9;
+    font-size:11px;
+}
+
+.post-menu{
+    width:34px;
+    height:34px;
+
+    border:none;
+    background:transparent;
+
+    color:#8d94a4;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.post-menu:hover{
+    background:#f2f3f7;
+}
+
+.post-content{
+    margin-top:15px;
+
+    font-size:14px;
+    line-height:1.7;
+}
+
+.post-image,
+.post-content video{
+    width:100%;
+
+    max-height:550px;
+
+    object-fit:cover;
+
+    border-radius:17px;
+
+    margin-top:14px;
+}
+
+.post-stats{
+    display:flex;
+    justify-content:space-between;
+
+    color:#8a92a2;
+
+    font-size:11px;
+
+    padding:14px 3px 11px;
+}
+
+.post-actions{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    border-top:1px solid var(--border);
+
+    border-bottom:1px solid var(--border);
+
+    padding:5px 0;
+}
+
+.post-action{
+    border:none;
+
+    background:transparent;
+
+    padding:11px;
+
+    color:#667084;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.post-action:hover{
+    background:#f4f5f8;
+    color:var(--primary);
+}
+
+.post-action.liked{
+    color:#ef476f;
+}
+
+/* COMMENTS */
+
+.comment-box{
+    display:none;
+
+    margin-top:13px;
+}
+
+.comment-input{
+    width:100%;
+
+    padding:12px 14px;
+
+    border:none;
+    outline:none;
+
+    background:#f3f4f7;
+
+    border-radius:13px;
+}
+
+.comment{
+    background:#f3f4f7;
+
+    padding:10px 13px;
+
+    margin-top:8px;
+
+    border-radius:12px;
+
+    font-size:12px;
+}
+
+/* =====================================================
+   RIGHT SIDEBAR
+===================================================== */
+
+.rightbar{
+    height:max-content;
+
+    position:sticky;
+    top:98px;
+}
+
+.side-card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:18px;
+
+    margin-bottom:17px;
+
+    box-shadow:var(--shadow);
+}
+
+.side-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:15px;
+}
+
+.side-title h3{
+    font-size:15px;
+}
+
+.side-title a{
+    color:var(--primary);
+    font-size:11px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.trend{
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:11px 5px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.trend:last-child{
+    border:none;
+}
+
+.trend-icon{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    background:#f1f0ff;
+
+    color:var(--primary);
+}
+
+.trend strong{
+    display:block;
+    font-size:12px;
+}
+
+.trend span{
+    color:#9299a9;
+    font-size:10px;
+}
+
+/* =====================================================
+   AD
+===================================================== */
+
+.ad{
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        145deg,
+        #211b52,
+        #40328c
+    );
+
+    color:white;
+
+    border-radius:20px;
+
+    box-shadow:0 12px 30px rgba(50,40,120,.2);
+}
+
+.ad-image{
+    height:130px;
+
+    background:
+    linear-gradient(
+        rgba(34,25,100,.1),
+        rgba(34,25,100,.8)
+    ),
+    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.ad-content{
+    padding:17px;
+}
+
+.sponsored{
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    opacity:.7;
+}
+
+.ad h3{
+    margin:6px 0;
+
+    font-size:16px;
+}
+
+.ad p{
+    font-size:11px;
+    line-height:1.6;
+
+    opacity:.8;
+}
+
+.ad-button{
+    display:block;
+
+    text-align:center;
+
+    margin-top:13px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    background:white;
+    color:#4f46b5;
+
+    font-size:11px;
+    font-weight:700;
+}
+
+/* =====================================================
+   SKILLS
+===================================================== */
+
+.skills{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:8px;
+}
+
+.skill{
+    overflow:hidden;
+
+    border-radius:12px;
+
+    background:#f4f5f8;
+}
+
+.skill img{
+    width:100%;
+    height:55px;
+
+    object-fit:cover;
+}
+
+.skill span{
+    display:block;
+
+    padding:7px 3px;
+
+    text-align:center;
+
+    font-size:9px;
+    font-weight:700;
+}
+
+/* =====================================================
+   DROPDOWN PANELS
+===================================================== */
+
+.floating-panel{
+    position:fixed;
+
+    top:83px;
+    right:25px;
+
+    width:340px;
+    max-height:520px;
+
+    overflow:auto;
+
+    padding:18px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    box-shadow:0 20px 50px rgba(15,23,42,.15);
+
+    z-index:5000;
+
+    display:none;
+
+    animation:panelIn .2s ease;
+}
+
+@keyframes panelIn{
+    from{
+        opacity:0;
+        transform:translateY(-8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.panel-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:15px;
+}
+
+.panel-title h3{
+    font-size:16px;
+}
+
+.notification{
+    display:flex;
+    gap:11px;
+
+    padding:11px;
+
+    border-radius:13px;
+
+    margin-bottom:7px;
+}
+
+.notification:hover{
+    background:#f4f5f8;
+}
+
+.notification img{
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+}
+
+.notification p{
+    font-size:11px;
+    line-height:1.5;
+}
+
+.notification small{
+    color:#999;
+}
+
+/* MENU */
+
+.menu-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:13px;
+
+    border-radius:12px;
+
+    color:#596276;
+
+    cursor:pointer;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+.menu-item:hover{
+    background:#f4f5f8;
+    color:var(--primary);
+}
+
+.menu-item i{
+    width:22px;
+}
+
+.toggle-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:13px;
+
+    background:#f4f5f8;
+
+    border-radius:13px;
+
+    margin-bottom:8px;
+}
+
+.switch{
+    width:47px;
+    height:25px;
+
+    border-radius:30px;
+
+    background:#d5d8df;
+
+    cursor:pointer;
+
+    position:relative;
+}
+
+.switch::after{
+    content:"";
+
+    position:absolute;
+
+    width:19px;
+    height:19px;
+
+    left:3px;
+    top:3px;
+
+    border-radius:50%;
+
+    background:white;
+
+    transition:.25s;
+}
+
+.switch.active{
+    background:var(--primary);
+}
+
+.switch.active::after{
+    left:25px;
+}
+
+/* =====================================================
+   STORY VIEWER
+===================================================== */
+
+.story-viewer{
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(5,7,20,.96);
+
+    backdrop-filter:blur(10px);
+}
+
+.story-viewer img,
+.story-viewer video{
+    max-width:min(90%,600px);
+
+    max-height:85vh;
+
+    border-radius:20px;
+
+    object-fit:contain;
+}
+
+.close-story{
+    position:absolute;
+
+    top:25px;
+    right:30px;
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.1);
+
+    color:white;
+
+    font-size:25px;
+
+    cursor:pointer;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+    text-align:center;
+
+    color:#9ba2b1;
+
+    font-size:10px;
+
+    padding:20px;
+}
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+body.dark{
+    --bg:#0c1020;
+    --card:#151a2c;
+    --text:#f2f4fa;
+    --muted:#9da6ba;
+    --border:#272d42;
+
+    --shadow:0 10px 35px rgba(0,0,0,.2);
+}
+
+body.dark .navbar{
+    background:rgba(13,17,32,.88);
+}
+
+body.dark .search-box,
+body.dark .composer textarea,
+body.dark .search-results,
+body.dark .nav-button{
+    background:#1d2337;
+    color:white;
+}
+
+body.dark .search-box input{
+    color:white;
+}
+
+body.dark .sidebar-link{
+    color:#aab2c5;
+}
+
+body.dark .sidebar-link:hover,
+body.dark .sidebar-link.active{
+    background:#252143;
+    color:#a49cff;
+}
+
+body.dark .composer-option,
+body.dark .post-action{
+    color:#aab2c5;
+}
+
+body.dark .composer-option:hover,
+body.dark .post-action:hover,
+body.dark .menu-item:hover,
+body.dark .notification:hover{
+    background:#20263a;
+}
+
+body.dark .comment,
+body.dark .comment-input,
+body.dark .toggle-row{
+    background:#20263a;
+    color:white;
+}
+
+body.dark .plus{
+    border-color:#151a2c;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+.mobile-nav{
+    display:none;
+}
+
+@media(max-width:1150px){
+
+    .container{
+        grid-template-columns:210px minmax(400px,680px);
+    }
+
+    .rightbar{
+        display:none;
+    }
+
+}
+
+@media(max-width:800px){
+
+    .navbar{
+        height:65px;
+        padding:0 15px;
+    }
+
+    .logo span{
+        display:none;
+    }
+
+    .logo-mark{
+        width:38px;
+        height:38px;
+    }
+
+    .search-box{
+        width:min(300px,45vw);
+    }
+
+    .nav-actions{
+        gap:4px;
+    }
+
+    .nav-button{
+        width:38px;
+        height:38px;
+    }
+
+    .container{
+        display:block;
+
+        padding:15px 10px 85px;
+    }
+
+    .sidebar{
+        display:none;
+    }
+
+    .stories{
+        margin-bottom:5px;
+    }
+
+    .composer{
+        border-radius:18px;
+    }
+
+    .mobile-nav{
+        position:fixed;
+
+        display:flex;
+
+        bottom:12px;
+        left:12px;
+        right:12px;
+
+        height:62px;
+
+        align-items:center;
+        justify-content:space-around;
+
+        background:rgba(255,255,255,.9);
+
+        backdrop-filter:blur(20px);
+
+        border:1px solid var(--border);
+
+        border-radius:20px;
+
+        z-index:4000;
+
+        box-shadow:0 10px 30px rgba(0,0,0,.12);
+    }
+
+    body.dark .mobile-nav{
+        background:rgba(21,26,44,.92);
+    }
+
+    .mobile-nav button{
+        border:none;
+        background:none;
+
+        color:#8b93a5;
+
+        font-size:18px;
+    }
+
+    .mobile-nav button.active{
+        color:var(--primary);
+    }
+
+}
+
+@media(max-width:550px){
+
+    .search-box{
+        display:none;
+    }
+
+    .nav-actions .message-button{
+        display:none;
+    }
+
+    .navbar{
+        padding:0 12px;
+    }
+
+    .container{
+        padding-left:8px;
+        padding-right:8px;
+    }
+
+    .story{
+        min-width:78px;
+    }
+
+    .story-avatar{
+        width:68px;
+        height:68px;
+    }
+
+    .composer{
+        padding:15px;
+    }
+
+    .composer-bottom{
+        align-items:flex-end;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .composer-options{
+        width:100%;
+        justify-content:space-between;
+    }
+
+    .post-button{
+        width:100%;
+    }
+
+    .post{
+        padding:15px;
+    }
+
+    .floating-panel{
+        left:10px;
+        right:10px;
+        top:73px;
+        width:auto;
+    }
+
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#c8ccd7;
+    border-radius:20px;
+}
+
+body.dark ::-webkit-scrollbar-thumb{
+    background:#353c52;
+}
+
+
+
+```css
+/* ==========================================
+   NETRA GLOBAL SETTINGS
+========================================== */
+
+/* DARK MODE */
+
+body.dark {
+    background:#080b12 !important;
+    color:#f8fafc;
+}
+
+
+/* LARGE TEXT */
+
+html.netra-large-text {
+    font-size:18px;
+}
+
+
+/* REDUCE / DISABLE ANIMATIONS */
+
+html.netra-no-animations *,
+html.netra-no-animations *::before,
+html.netra-no-animations *::after {
+
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
+
+}
+
+
+/* ==========================================
+   COMMON DARK MODE COMPONENTS
+========================================== */
+
+body.dark .navbar,
+body.dark .header,
+body.dark .sidebar,
+body.dark .rightbar,
+body.dark .card,
+body.dark .post,
+body.dark .story-card,
+body.dark .settings-card,
+body.dark .modal-box,
+body.dark .dropdown,
+body.dark .menu-panel {
+
+    background:#111827 !important;
+    color:#f8fafc !important;
+    border-color:#273244 !important;
+
+}
+
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+
+    background:#182131 !important;
+    color:#fff !important;
+    border-color:#303b4e !important;
+
+}
+
+
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+
+    color:#9ca3af !important;
+
+}
+
+
+body.dark .muted,
+body.dark .description,
+body.dark .subtitle {
+
+    color:#9ca3af !important;
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="nav-left">
+
+        <div class="logo">
+
+            <div class="logo-mark">
+                <i class="fa-solid fa-n"></i>
+            </div>
+
+            <span>Netra</span>
+
+        </div>
+
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search people, posts..."
+            >
+
+            <div
+                class="search-results"
+                id="searchResults">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-actions">
+
+        <button class="nav-button">
+            <i class="fa-solid fa-house"></i>
+        </button>
+
+        <button
+            class="nav-button"
+            onclick="toggleNotifications()"
+        >
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="badge">0</span>
+
+        </button>
+
+        <button class="nav-button message-button">
+
+            <i class="fa-regular fa-comment-dots"></i>
+
+        </button>
+
+        <button
+            class="nav-button"
+            onclick="toggleMenu()"
+        >
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     NOTIFICATIONS
+===================================================== -->
+
+<div
+    class="floating-panel"
+    id="notificationPanel"
+>
+
+    <div class="panel-title">
+
+        <h3>Notifications</h3>
+
+        <span style="font-size:10px;color:#635bff;">
+            Mark all read
+        </span>
+
+    </div>
+
+
+    <div class="notification">
+
+        <img src="https://i.pravatar.cc/150?img=32">
+
+        <p>
+            <b>Daniel</b> liked your post ❤️
+            <br>
+            <small>2 minutes ago</small>
+        </p>
+
+    </div>
+
+
+    <div class="notification">
+
+        <img src="https://i.pravatar.cc/150?img=24">
+
+        <p>
+            <b>Sarah</b> commented on your photo 💬
+            <br>
+            <small>7 minutes ago</small>
+        </p>
+
+    </div>
+
+
+    <div class="notification">
+
+        <img src="https://i.pravatar.cc/150?img=12">
+
+        <p>
+            <b>Michael</b> reposted your post 🔁
+            <br>
+            <small>15 minutes ago</small>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<div
+    class="floating-panel"
+    id="menuPanel"
+>
+
+    <div class="panel-title">
+
+        <h3>Menu</h3>
+
+        <i class="fa-solid fa-sliders"></i>
+
+    </div>
+
+
+    <div class="toggle-row">
+
+        <span>
+            <i class="fa-solid fa-moon"></i>
+            &nbsp; Dark Mode
+        </span>
+
+        <div
+            class="switch"
+            id="darkSwitch"
+            onclick="toggleDark()"
+        ></div>
+
+    </div>
+
+
+    <div
+        class="menu-item"
+        onclick="location.href='settings.html'"
+    >
+
+        <i class="fa-solid fa-gear"></i>
+
+        Settings
+
+    </div>
+
+
+    <div
+        class="menu-item"
+        onclick="location.href='profile page.html'"
+    >
+
+        <i class="fa-solid fa-user"></i>
+
+        My Profile
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <i class="fa-regular fa-bookmark"></i>
+
+        Saved Posts
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <i class="fa-solid fa-circle-question"></i>
+
+        Help & Support
+
+    </div>
+
+
+    <div
+        class="menu-item"
+        onclick="location.href='index.html'"
+    >
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Logout
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- =================================================
+         LEFT SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="profile-mini">
+
+            <img src="https://i.pravatar.cc/150?img=12">
+
+            <div>
+
+                <h4>Joshua</h4>
+
+                <span>@joshua</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-line"></div>
+
+
+        <a
+            href="HomePage.html"
+            class="sidebar-link active"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+
+        <a
+            href="Newspage.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-regular fa-newspaper"></i>
+
+            News Update
+
+        </a>
+
+
+        <a
+            href="Friendspage.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-user-group"></i>
+
+            Your Friends
+
+        </a>
+
+
+        <a
+            href="Group page.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-users"></i>
+
+            Communities
+
+        </a>
+
+
+        <a
+            href="Watch page.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-play"></i>
+
+            Reels
+
+        </a>
+
+
+        <a
+            href="Storepage.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-bag-shopping"></i>
+
+            Marketplace
+
+        </a>
+
+
+        <a
+            href="Messagner.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-regular fa-message"></i>
+
+            Messages
+
+        </a>
+
+
+        <a
+            href="videos.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-tv"></i>
+
+            GoTube
+
+        </a>
+
+
+        <div class="sidebar-title">
+            PERSONAL
+        </div>
+
+
+        <a
+            href="profile page.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-regular fa-user"></i>
+
+            Profile
+
+        </a>
+
+
+        <a
+            href="#"
+            class="sidebar-link"
+        >
+
+            <i class="fa-regular fa-bookmark"></i>
+
+            Saved
+
+        </a>
+
+    </aside>
+
+
+    <!-- =================================================
+         CENTER FEED
+    ================================================== -->
+
+    <main>
+
+
+        <!-- STORIES -->
+
+        <div
+            class="stories"
+            id="storiesWrapper"
+        >
+
+            <div
+                class="story add-story"
+                onclick="addStory()"
+            >
+
+                <div class="story-avatar">
+
+                    <img
+                        src="https://i.pravatar.cc/150?img=12"
+                    >
+
+                    <div class="plus">
+                        +
+                    </div>
+
+                </div>
+
+                <div class="story-name">
+                    Your Story
+                </div>
+
+            </div>
+            
+            
+        </div>
+
+
+        <!-- POST COMPOSER -->
+
+        <section class="composer">
+
+            <div class="composer-top">
+
+                <img
+                    class="avatar"
+                    src="https://i.pravatar.cc/150?img=12"
+                >
+
+
+                <textarea
+                    id="postText"
+                    placeholder="What's happening, Joshua?"
+                ></textarea>
+
+            </div>
+
+
+            <div class="composer-bottom">
+
+                <div class="composer-options">
+
+                    <label class="composer-option">
+
+                        <i class="fa-regular fa-image"></i>
+
+                        Photo
+
+                        <input
+                            type="file"
+                            hidden
+                            id="imageInput"
+                            accept="image/*"
+                        >
+
+                    </label>
+
+
+                    <label class="composer-option">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Video
+
+                        <input
+                            type="file"
+                            hidden
+                            id="videoInput"
+                            accept="video/*"
+                        >
+
+                    </label>
+
+
+                    <button
+                        class="composer-option"
+                        onclick="alert('Feeling feature coming soon!')"
+                    >
+
+                        <i class="fa-regular fa-face-smile"></i>
+
+                        Feeling
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="post-button"
+                    onclick="createPost()"
+                >
+
+                    Post
+
+                </button>
+
+            </div>
+
+
+            <img
+                id="previewImage"
+                class="preview"
+            >
+
+
+            <video
+                id="previewVideo"
+                class="preview"
+                controls
+            ></video>
+
+        </section>
+
+
+        <!-- FEED -->
+
+        <div id="feed"></div>
+
+    </main>
+
+
+    <!-- =================================================
+         RIGHT SIDEBAR
+    ================================================== -->
+
+    <aside class="rightbar">
+
+
+        <!-- TRENDING -->
+
+        <div class="side-card">
+
+            <div class="side-title">
+
+                <h3>Trending</h3>
+
+                <a href="#">See all</a>
+
+            </div>
+
+
+            <div class="trend">
+
+                <div class="trend-icon">
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+
+                <div>
+
+                    <strong>#NetraChallenge</strong>
+
+                    <span>12.8K posts</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="trend">
+
+                <div class="trend-icon">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+
+                <div>
+
+                    <strong>Viral Music</strong>
+
+                    <span>8.4K posts</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="trend">
+
+                <div class="trend-icon">
+                    <i class="fa-solid fa-futbol"></i>
+                </div>
+
+                <div>
+
+                    <strong>Sports Updates</strong>
+
+                    <span>6.2K posts</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="trend">
+
+                <div class="trend-icon">
+                    <i class="fa-solid fa-film"></i>
+                </div>
+
+                <div>
+
+                    <strong>Movie Trends</strong>
+
+                    <span>4.7K posts</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADVERTISEMENT -->
+
+        <div class="side-card" style="padding:0;overflow:hidden;">
+
+            <div class="ad">
+
+                <div class="ad-image"></div>
+
+                <div class="ad-content">
+
+                    <div class="sponsored">
+                        Sponsored
+                    </div>
+
+                    <h3>
+                        Grow your business 🚀
+                    </h3>
+
+                    <p>
+                        Advertise your brand on Netra
+                        and reach people who matter.
+                    </p>
+
+                    <a
+                        class="ad-button"
+                        href="#"
+                    >
+                        Explore opportunity
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SKILLS -->
+
+        <div class="side-card">
+
+            <div class="side-title">
+
+                <h3>Explore Skills</h3>
+
+                <a href="#">More</a>
+
+            </div>
+
+
+            <div class="skills">
+
+                <div class="skill">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=500"
+                    >
+
+                    <span>
+                        Web Design
+                    </span>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=500"
+                    >
+
+                    <span>
+                        UI/UX
+                    </span>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=500"
+                    >
+
+                    <span>
+                        Development
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </aside>
+
+</div>
+
+
+<!-- =====================================================
+     MOBILE NAV
+===================================================== -->
+
+<div class="mobile-nav">
+
+    <button class="active">
+        <i class="fa-solid fa-house"></i>
+    </button>
+
+    <button>
+        <i class="fa-solid fa-user-group"></i>
+    </button>
+
+    <button>
+        <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <button>
+        <i class="fa-regular fa-message"></i>
+    </button>
+
+    <button onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     STORY VIEWER
+===================================================== -->
+
+<div
+    class="story-viewer"
+    id="storyViewer"
+>
+
+    <div
+        class="close-story"
+        onclick="closeStory()"
+    >
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </div>
+
+
+    <img id="storyImage">
+
+
+    <video
+        id="storyVideo"
+        autoplay
+        controls
+    ></video>
+
+</div>
+
+
+<div class="footer">
+
+    © 2026 Netra · Connect. Share. Belong.
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   USERS / SEARCH
+===================================================== */
+
+const users = [
+    "Joshua",
+    "Daniel",
+    "Sarah",
+    "Michael",
+    "David",
+    "Miracle",
+    "Sophia",
+    "Victory",
+    "John",
+    "Samuel"
+];
+
+
+const searchInput =
+document.getElementById("searchInput");
+
+const searchResults =
+document.getElementById("searchResults");
+
+
+searchInput.addEventListener("input", () => {
+
+    const value =
+    searchInput.value.toLowerCase().trim();
+
+    searchResults.innerHTML = "";
+
+    if(!value){
+
+        searchResults.style.display = "none";
+
+        return;
+
+    }
+
+
+    const filtered =
+    users.filter(user =>
+        user.toLowerCase().includes(value)
+    );
+
+
+    if(filtered.length === 0){
+
+        searchResults.innerHTML = `
+            <div style="
+                padding:15px;
+                color:#9299a9;
+                font-size:12px;
+            ">
+                No users found
+            </div>
+        `;
+
+    }
+
+
+    filtered.forEach(user => {
+
+        searchResults.innerHTML += `
+
+            <div class="search-user">
+
+                <img
+                    src="https://i.pravatar.cc/150?u=${user}"
+                >
+
+                <div>
+
+                    <strong style="font-size:12px;">
+                        ${user}
+                    </strong>
+
+                    <div style="
+                        font-size:10px;
+                        color:#9299a9;
+                    ">
+                        Netra member
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    searchResults.style.display = "block";
+
+});
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+function toggleNotifications(){
+
+    const panel =
+    document.getElementById("notificationPanel");
+
+    const menu =
+    document.getElementById("menuPanel");
+
+
+    menu.style.display = "none";
+
+
+    panel.style.display =
+    panel.style.display === "block"
+    ? "none"
+    : "block";
+
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+function toggleMenu(){
+
+    const panel =
+    document.getElementById("menuPanel");
+
+    const notification =
+    document.getElementById("notificationPanel");
+
+
+    notification.style.display = "none";
+
+
+    panel.style.display =
+    panel.style.display === "block"
+    ? "none"
+    : "block";
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+function toggleDark(){
+
+    document.body.classList.toggle("dark");
+
+
+    const active =
+    document.body.classList.contains("dark");
+
+
+    document
+        .getElementById("darkSwitch")
+        .classList.toggle("active",active);
+
+
+    localStorage.setItem(
+        "netraDark",
+        active
+    );
+
+}
+
+
+if(
+    localStorage.getItem("netraDark")
+    === "true"
+){
+
+    document.body.classList.add("dark");
+
+    document
+        .getElementById("darkSwitch")
+        .classList.add("active");
+
+}
+
+
+/* =====================================================
+   IMAGE / VIDEO PREVIEW
+===================================================== */
+
+const imageInput =
+document.getElementById("imageInput");
+
+const videoInput =
+document.getElementById("videoInput");
+
+const previewImage =
+document.getElementById("previewImage");
+
+const previewVideo =
+document.getElementById("previewVideo");
+
+
+imageInput.addEventListener("change", () => {
+
+    const file =
+    imageInput.files[0];
+
+    if(!file) return;
+
+
+    previewImage.src =
+    URL.createObjectURL(file);
+
+    previewImage.style.display =
+    "block";
+
+    previewVideo.style.display =
+    "none";
+
+});
+
+
+videoInput.addEventListener("change", () => {
+
+    const file =
+    videoInput.files[0];
+
+    if(!file) return;
+
+
+    previewVideo.src =
+    URL.createObjectURL(file);
+
+    previewVideo.style.display =
+    "block";
+
+    previewImage.style.display =
+    "none";
+
+});
+
+
+/* =====================================================
+   POSTS
+===================================================== */
+
+let posts =
+JSON.parse(
+    localStorage.getItem("netraPosts")
+) || [];
+
+
+function createPost(){
+
+    const text =
+    document
+        .getElementById("postText")
+        .value
+        .trim();
+
+
+    const hasImage =
+    imageInput.files[0];
+
+    const hasVideo =
+    videoInput.files[0];
+
+
+    if(
+        !text &&
+        !hasImage &&
+        !hasVideo
+    ){
+
+        alert("Write something or add media first.");
+
+        return;
+
+    }
+
+
+    const post = {
+
+        id:Date.now(),
+
+        name:"Joshua",
+
+        time:new Date().toLocaleString(),
+
+        text:text,
+
+        image:
+        previewImage.style.display === "block"
+        ? previewImage.src
+        : null,
+
+        video:
+        previewVideo.style.display === "block"
+        ? previewVideo.src
+        : null,
+
+        likes:0,
+
+        liked:false,
+
+        shares:0,
+
+        comments:[]
+
+    };
+
+
+    posts.unshift(post);
+
+    savePosts();
+
+    renderPosts();
+
+    resetComposer();
+
+}
+
+
+/* =====================================================
+   RENDER POSTS
+===================================================== */
+
+function renderPosts(){
+
+    const feed =
+    document.getElementById("feed");
+
+
+    feed.innerHTML = "";
+
+
+    posts.forEach(post => {
+
+        const comments =
+        post.comments.map(comment => `
+
+            <div class="comment">
+                ${escapeHTML(comment)}
+            </div>
+
+        `).join("");
+
+
+        feed.innerHTML += `
+
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="post-user">
+
+                        <img
+                            src="https://i.pravatar.cc/150?u=${post.name}"
+                        >
+
+                        <div>
+
+                            <h4>
+                                ${post.name}
+                            </h4>
+
+                            <small>
+                                ${post.time}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="post-menu">
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="post-content">
+
+                    ${
+                        escapeHTML(post.text)
+                    }
+
+
+                    ${
+                        post.image
+                        ?
+                        `
+                        <img
+                            src="${post.image}"
+                            class="post-image"
+                        >
+                        `
+                        : ""
+                    }
+
+
+                    ${
+                        post.video
+                        ?
+                        `
+                        <video
+                            src="${post.video}"
+                            controls
+                        ></video>
+                        `
+                        : ""
+                    }
+
+                </div>
+
+
+                <div class="post-stats">
+
+                    <span>
+                        ❤️ ${post.likes} Likes
+                    </span>
+
+                    <span>
+                        ${post.comments.length}
+                        Comments ·
+                        ${post.shares}
+                        Reposts
+                    </span>
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button
+                        class="post-action ${post.liked ? "liked" : ""}"
+                        onclick="toggleLike(${post.id})"
+                    >
+
+                        ${
+                            post.liked
+                            ? "❤️ Liked"
+                            : "♡ Like"
+                        }
+
+                    </button>
+
+
+                    <button
+                        class="post-action"
+                        onclick="toggleComments(${post.id})"
+                    >
+
+                        <i class="fa-regular fa-comment"></i>
+                        Comment
+
+                    </button>
+
+
+                    <button
+                        class="post-action"
+                        onclick="sharePost(${post.id})"
+                    >
+
+                        <i class="fa-solid fa-repeat"></i>
+                        Repost
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="comment-box"
+                    id="comment-${post.id}"
+                >
+
+                    <input
+                        class="comment-input"
+                        placeholder="Write a comment..."
+                        onkeypress="
+                            addComment(
+                                event,
+                                ${post.id},
+                                this
+                            )
+                        "
+                    >
+
+                    ${comments}
+
+                </div>
+
+
+                <button
+                    onclick="deletePost(${post.id})"
+                    style="
+                        margin-top:12px;
+                        border:none;
+                        background:none;
+                        color:#a0a5b2;
+                        font-size:10px;
+                        cursor:pointer;
+                    "
+                >
+
+                    Delete post
+
+                </button>
+
+            </article>
+
+        `;
+
+    });
+
+}
+
+
+/* =====================================================
+   LIKE
+===================================================== */
+
+function toggleLike(id){
+
+    const post =
+    posts.find(p => p.id === id);
+
+    if(!post) return;
+
+
+    post.liked =
+    !post.liked;
+
+
+    post.likes +=
+    post.liked ? 1 : -1;
+
+
+    savePosts();
+
+    renderPosts();
+
+}
+
+
+/* =====================================================
+   COMMENTS
+===================================================== */
+
+function toggleComments(id){
+
+    const box =
+    document.getElementById(
+        `comment-${id}`
+    );
+
+
+    box.style.display =
+    box.style.display === "block"
+    ? "none"
+    : "block";
+
+}
+
+
+function addComment(
+    event,
+    id,
+    input
+){
+
+    if(
+        event.key !== "Enter"
+        ||
+        !input.value.trim()
+    ){
+
+        return;
+
+    }
+
+
+    const post =
+    posts.find(p => p.id === id);
+
+
+    if(!post) return;
+
+
+    post.comments.push(
+        input.value.trim()
+    );
+
+
+    savePosts();
+
+    renderPosts();
+
+}
+
+
+/* =====================================================
+   REPOST
+===================================================== */
+
+function sharePost(id){
+
+    const post =
+    posts.find(p => p.id === id);
+
+
+    if(!post) return;
+
+
+    post.shares++;
+
+
+    savePosts();
+
+    renderPosts();
+
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+function deletePost(id){
+
+    if(
+        !confirm(
+            "Delete this post?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    posts =
+    posts.filter(
+        post => post.id !== id
+    );
+
+
+    savePosts();
+
+    renderPosts();
+
+}
+
+
+/* =====================================================
+   SAVE POSTS
+===================================================== */
+
+function savePosts(){
+
+    localStorage.setItem(
+        "netraPosts",
+        JSON.stringify(posts)
+    );
+
+}
+
+
+/* =====================================================
+   RESET COMPOSER
+===================================================== */
+
+function resetComposer(){
+
+    document
+        .getElementById("postText")
+        .value = "";
+
+
+    imageInput.value = "";
+
+    videoInput.value = "";
+
+
+    previewImage.style.display =
+    "none";
+
+    previewVideo.style.display =
+    "none";
+
+
+    previewImage.src = "";
+
+    previewVideo.src = "";
+
+}
+
+
+/* =====================================================
+   STORIES
+===================================================== */
+
+function addStory(){
+
+    const input =
+    document.createElement("input");
+
+
+    input.type = "file";
+
+    input.accept =
+    "image/*,video/*";
+
+
+    input.click();
+
+
+    input.onchange = () => {
+
+        const file =
+        input.files[0];
+
+
+        if(!file) return;
+
+
+        const url =
+        URL.createObjectURL(file);
+
+
+        const type =
+        file.type.startsWith("video")
+        ? "video"
+        : "image";
+
+
+        const story =
+        document.createElement("div");
+
+
+        story.className = "story";
+
+
+        if(type === "image"){
+
+            story.innerHTML = `
+
+                <div class="story-avatar">
+
+                    <img src="${url}">
+
+                </div>
+
+                <div class="story-name">
+                    Your Story
+                </div>
+
+            `;
+
+        }else{
+
+            story.innerHTML = `
+
+                <div class="story-avatar">
+
+                    <video
+                        src="${url}"
+                        autoplay
+                        muted
+                        loop
+                    ></video>
+
+                </div>
+
+                <div class="story-name">
+                    Your Story
+                </div>
+
+            `;
+
+        }
+
+
+        story.onclick =
+        () => openStory(
+            url,
+            type
+        );
+
+
+        document
+            .getElementById(
+                "storiesWrapper"
+            )
+            .appendChild(story);
+
+    };
+
+}
+
+
+/* =====================================================
+   STORY VIEWER
+===================================================== */
+
+function openStory(
+    src,
+    type
+){
+
+    const viewer =
+    document.getElementById(
+        "storyViewer"
+    );
+
+
+    const image =
+    document.getElementById(
+        "storyImage"
+    );
+
+
+    const video =
+    document.getElementById(
+        "storyVideo"
+    );
+
+
+    viewer.style.display =
+    "flex";
+
+
+    if(type === "image"){
+
+        image.style.display =
+        "block";
+
+        video.style.display =
+        "none";
+
+        image.src = src;
+
+    }else{
+
+        video.style.display =
+        "block";
+
+        image.style.display =
+        "none";
+
+        video.src = src;
+
+    }
+
+}
+
+
+function closeStory(){
+
+    const viewer =
+    document.getElementById(
+        "storyViewer"
+    );
+
+
+    const video =
+    document.getElementById(
+        "storyVideo"
+    );
+
+
+    viewer.style.display =
+    "none";
+
+
+    video.pause();
+
+    video.src = "";
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHTML(text){
+
+    const div =
+    document.createElement("div");
+
+
+    div.textContent =
+    text || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   CLOSE PANELS WHEN CLICKING OUTSIDE
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const notification =
+        document.getElementById(
+            "notificationPanel"
+        );
+
+
+        const menu =
+        document.getElementById(
+            "menuPanel"
+        );
+
+
+        if(
+            !event.target.closest(
+                ".nav-button"
+            ) &&
+            !event.target.closest(
+                ".floating-panel"
+            )
+        ){
+
+            notification.style.display =
+            "none";
+
+            menu.style.display =
+            "none";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+renderPosts();
+
+</script>
+
+</body>
+</html>

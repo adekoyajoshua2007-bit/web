@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Netra News</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#1877f2;
+    --primary-dark:#0f62d6;
+    --background:#f5f7fb;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --hover:#f0f4f9;
+    --danger:#ef4444;
+    --success:#16a34a;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:var(--background);
+    color:var(--text);
+    min-height:100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+
+    padding:0 5%;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    text-decoration:none;
+    font-size:27px;
+    font-weight:800;
+    color:var(--primary);
+    margin-right:35px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--muted);
+
+    padding:11px 14px;
+
+    border-radius:10px;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    background:var(--hover);
+    color:var(--primary);
+}
+
+.nav-links a.active{
+    background:#e8f1ff;
+    color:var(--primary);
+}
+
+.nav-search{
+    margin-left:auto;
+
+    width:280px;
+    height:42px;
+
+    background:#f3f4f6;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 15px;
+}
+
+.nav-search i{
+    color:var(--muted);
+}
+
+.nav-search input{
+    border:none;
+    outline:none;
+    background:transparent;
+
+    width:100%;
+
+    margin-left:10px;
+
+    font-size:14px;
+}
+
+/* ================= PAGE ================= */
+
+.page{
+    width:90%;
+    max-width:1400px;
+    margin:35px auto;
+}
+
+.page-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:25px;
+}
+
+.page-header h1{
+    font-size:30px;
+}
+
+.page-header p{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.publish-btn{
+    border:none;
+    background:var(--primary);
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.publish-btn:hover{
+    background:var(--primary-dark);
+    transform:translateY(-1px);
+}
+
+/* ================= CATEGORIES ================= */
+
+.categories{
+    display:flex;
+    gap:10px;
+
+    overflow-x:auto;
+
+    margin-bottom:30px;
+
+    padding-bottom:5px;
+}
+
+.category{
+    border:1px solid var(--border);
+
+    background:white;
+
+    color:var(--muted);
+
+    padding:10px 16px;
+
+    border-radius:22px;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.category:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+}
+
+.category.active{
+    background:var(--primary);
+    color:white;
+    border-color:var(--primary);
+}
+
+/* ================= LAYOUT ================= */
+
+.news-layout{
+    display:grid;
+    grid-template-columns:minmax(0,2fr) minmax(260px,1fr);
+
+    gap:25px;
+}
+
+/* ================= EMPTY STATE ================= */
+
+.empty-state{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:60px 30px;
+
+    text-align:center;
+}
+
+.empty-icon{
+    width:80px;
+    height:80px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#eaf2ff;
+
+    color:var(--primary);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:32px;
+}
+
+.empty-state h2{
+    margin-bottom:10px;
+}
+
+.empty-state p{
+    color:var(--muted);
+    max-width:500px;
+    margin:0 auto 22px;
+    line-height:1.6;
+}
+
+.empty-action{
+    border:none;
+
+    background:var(--primary);
+    color:white;
+
+    padding:11px 18px;
+
+    border-radius:9px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+/* ================= NEWS CARD ================= */
+
+.news-card{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+
+    transition:.2s;
+}
+
+.news-card:hover{
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.news-image{
+    width:100%;
+    height:280px;
+
+    object-fit:cover;
+
+    background:#eef1f5;
+}
+
+.news-content{
+    padding:20px;
+}
+
+.news-category{
+    display:inline-block;
+
+    background:#eaf2ff;
+
+    color:var(--primary);
+
+    padding:6px 10px;
+
+    border-radius:7px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+}
+
+.news-title{
+    font-size:21px;
+    line-height:1.35;
+
+    margin-bottom:10px;
+}
+
+.news-description{
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    margin-bottom:15px;
+}
+
+.news-meta{
+    color:var(--muted);
+
+    font-size:12px;
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:16px;
+}
+
+.news-actions{
+    border-top:1px solid var(--border);
+
+    padding-top:13px;
+
+    display:flex;
+
+    justify-content:space-between;
+}
+
+.news-actions button{
+    border:none;
+    background:none;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    padding:8px 12px;
+
+    border-radius:8px;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.news-actions button:hover{
+    background:var(--hover);
+    color:var(--primary);
+}
+
+.news-actions button.liked{
+    color:var(--danger);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar-card{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+}
+
+.sidebar-card h3{
+    margin-bottom:15px;
+}
+
+.sidebar-empty{
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    text-align:center;
+
+    padding:25px 10px;
+}
+
+.sidebar-empty i{
+    font-size:25px;
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#9ca3af;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    z-index:2000;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+
+    width:100%;
+    max-width:600px;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+}
+
+.modal-header{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    font-size:22px;
+}
+
+.close-modal{
+    border:none;
+    background:#f3f4f6;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+    width:100%;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    padding:12px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:14px;
+}
+
+.form-group textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:var(--primary);
+}
+
+.publish-submit{
+    width:100%;
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:13px;
+
+    border-radius:9px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+    left:50%;
+
+    transform:translateX(-50%) translateY(100px);
+
+    background:#111827;
+
+    color:white;
+
+    padding:13px 20px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    z-index:3000;
+
+    opacity:0;
+
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translateX(-50%) translateY(0);
+    opacity:1;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+    .navbar{
+        padding:0 20px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .nav-search{
+        width:220px;
+    }
+
+    .news-layout{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        height:62px;
+    }
+
+    .logo{
+        font-size:24px;
+        margin-right:15px;
+    }
+
+    .nav-search{
+        width:auto;
+        flex:1;
+    }
+
+    .page{
+        width:94%;
+        margin:25px auto;
+    }
+
+    .page-header{
+        align-items:flex-start;
+        gap:15px;
+        flex-direction:column;
+    }
+
+    .page-header h1{
+        font-size:25px;
+    }
+
+    .publish-btn{
+        width:100%;
+    }
+
+    .news-image{
+        height:210px;
+    }
+
+    .news-title{
+        font-size:19px;
+    }
+
+    .news-actions{
+        overflow-x:auto;
+    }
+
+    .news-actions button{
+        white-space:nowrap;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+<a href="HomePage.html" class="logo">
+Netra.
+</a>
+
+<nav class="nav-links">
+
+<a href="HomePage.html">
+<i class="fa-solid fa-house"></i>
+Home
+</a>
+
+<a href="Newspage.html" class="active">
+<i class="fa-solid fa-newspaper"></i>
+News
+</a>
+
+<a href="Friendspage.html">
+<i class="fa-solid fa-user-group"></i>
+Friends
+</a>
+
+<a href="Group page.html">
+<i class="fa-solid fa-users"></i>
+Communities
+</a>
+
+<a href="Messagner.html">
+<i class="fa-solid fa-message"></i>
+Messages
+</a>
+
+</nav>
+
+<div class="nav-search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="newsSearch"
+placeholder="Search news..."
+autocomplete="off">
+
+</div>
+
+</header>
+
+
+<!-- ================= MAIN PAGE ================= -->
+
+<main class="page">
+
+<section class="page-header">
+
+<div>
+
+<h1>
+Netra News
+</h1>
+
+<p>
+Discover, publish and follow stories that matter.
+</p>
+
+</div>
+
+<button class="publish-btn" onclick="openPublishModal()">
+
+<i class="fa-solid fa-pen"></i>
+
+Publish Story
+
+</button>
+
+</section>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<div class="categories">
+
+<button class="category active" data-category="all">
+All
+</button>
+
+<button class="category" data-category="world">
+World
+</button>
+
+<button class="category" data-category="technology">
+Technology
+</button>
+
+<button class="category" data-category="business">
+Business
+</button>
+
+<button class="category" data-category="sports">
+Sports
+</button>
+
+<button class="category" data-category="entertainment">
+Entertainment
+</button>
+
+<button class="category" data-category="politics">
+Politics
+</button>
+
+<button class="category" data-category="lifestyle">
+Lifestyle
+</button>
+
+</div>
+
+
+<!-- ================= NEWS LAYOUT ================= -->
+
+<div class="news-layout">
+
+<!-- NEWS FEED -->
+
+<section id="newsFeed">
+
+<div class="empty-state" id="newsEmpty">
+
+<div class="empty-icon">
+
+<i class="fa-solid fa-newspaper"></i>
+
+</div>
+
+<h2>
+Your News Feed Is Ready
+</h2>
+
+<p>
+There are no news stories available yet. Publish the first story or connect Netra to Firebase to start receiving real stories from users.
+</p>
+
+<button class="empty-action"
+onclick="openPublishModal()">
+
+<i class="fa-solid fa-pen"></i>
+
+Publish the First Story
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- SIDEBAR -->
+
+<aside>
+
+<div class="sidebar-card">
+
+<h3>
+Trending
+</h3>
+
+<div class="sidebar-empty">
+
+<i class="fa-solid fa-chart-line"></i>
+
+No trending topics yet.
+
+<p>
+Trending topics will appear here as the Netra community becomes active.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="sidebar-card">
+
+<h3>
+Most Read
+</h3>
+
+<div class="sidebar-empty">
+
+<i class="fa-solid fa-book-open"></i>
+
+No popular stories yet.
+
+<p>
+Popular stories will automatically appear here when readers start engaging with news.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="sidebar-card">
+
+<h3>
+News Tools
+</h3>
+
+<div class="sidebar-empty">
+
+<i class="fa-solid fa-compass"></i>
+
+Explore Netra
+
+<p>
+Search stories, explore categories and publish your own news.
+</p>
+
+</div>
+
+</div>
+
+</aside>
+
+</div>
+
+</main>
+
+
+<!-- ================= PUBLISH MODAL ================= -->
+
+<div class="modal" id="publishModal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h2>
+Publish a Story
+</h2>
+
+<button class="close-modal"
+onclick="closePublishModal()">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+
+<form id="publishForm">
+
+<div class="form-group">
+
+<label>
+Headline
+</label>
+
+<input
+type="text"
+id="storyTitle"
+placeholder="Enter your story headline"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Category
+</label>
+
+<select id="storyCategory" required>
+
+<option value="">
+Choose category
+</option>
+
+<option value="World">
+World
+</option>
+
+<option value="Technology">
+Technology
+</option>
+
+<option value="Business">
+Business
+</option>
+
+<option value="Sports">
+Sports
+</option>
+
+<option value="Entertainment">
+Entertainment
+</option>
+
+<option value="Politics">
+Politics
+</option>
+
+<option value="Lifestyle">
+Lifestyle
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Story
+</label>
+
+<textarea
+id="storyDescription"
+placeholder="Write your story..."
+required></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Image URL <span style="font-weight:400;color:#9ca3af;">(optional)</span>
+</label>
+
+<input
+type="url"
+id="storyImage"
+placeholder="https://example.com/image.jpg">
+
+</div>
+
+
+<button
+type="submit"
+class="publish-submit">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+Publish Story
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* ================= VARIABLES ================= */
+
+const newsFeed =
+document.getElementById("newsFeed");
+
+const newsSearch =
+document.getElementById("newsSearch");
+
+const newsEmpty =
+document.getElementById("newsEmpty");
+
+let newsStories = [];
+
+let currentCategory = "all";
+
+
+/* ================= MODAL ================= */
+
+function openPublishModal(){
+
+    document
+    .getElementById("publishModal")
+    .classList.add("show");
+
+}
+
+function closePublishModal(){
+
+    document
+    .getElementById("publishModal")
+    .classList.remove("show");
+
+}
+
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+
+document
+.getElementById("publishModal")
+.addEventListener("click", function(e){
+
+    if(e.target === this){
+
+        closePublishModal();
+
+    }
+
+});
+
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+    const toast =
+    document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* ================= PUBLISH ================= */
+
+document
+.getElementById("publishForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+
+    const title =
+    document.getElementById("storyTitle").value.trim();
+
+    const category =
+    document.getElementById("storyCategory").value;
+
+    const description =
+    document.getElementById("storyDescription").value.trim();
+
+    const image =
+    document.getElementById("storyImage").value.trim();
+
+
+    if(!title || !category || !description){
+
+        showToast("Please complete all required fields.");
+
+        return;
+
+    }
+
+
+    const story = {
+
+        id:Date.now(),
+
+        title:title,
+
+        category:category,
+
+        description:description,
+
+        image:image,
+
+        likes:0,
+
+        comments:0,
+
+        shares:0,
+
+        saved:false,
+
+        liked:false,
+
+        createdAt:new Date()
+
+    };
+
+
+    newsStories.unshift(story);
+
+
+    this.reset();
+
+    closePublishModal();
+
+    renderNews();
+
+    showToast(
+        "Story published for this browser session."
+    );
+
+});
+
+
+/* ================= RENDER NEWS ================= */
+
+function renderNews(){
+
+    newsFeed.innerHTML = "";
+
+
+    let filteredStories =
+    newsStories.filter(story=>{
+
+        const matchesCategory =
+        currentCategory === "all" ||
+        story.category.toLowerCase() === currentCategory.toLowerCase();
+
+
+        const searchTerm =
+        newsSearch.value.toLowerCase().trim();
+
+
+        const matchesSearch =
+        story.title.toLowerCase().includes(searchTerm) ||
+        story.description.toLowerCase().includes(searchTerm) ||
+        story.category.toLowerCase().includes(searchTerm);
+
+
+        return matchesCategory && matchesSearch;
+
+    });
+
+
+    if(filteredStories.length === 0){
+
+        newsFeed.innerHTML = `
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-newspaper"></i>
+
+            </div>
+
+            <h2>
+                ${
+                    newsStories.length === 0
+                    ?
+                    "Your News Feed Is Ready"
+                    :
+                    "No Stories Found"
+                }
+            </h2>
+
+            <p>
+                ${
+                    newsStories.length === 0
+                    ?
+                    "There are no news stories available yet. Publish the first story or connect Netra to Firebase to start receiving real stories."
+                    :
+                    "Try another search term or category."
+                }
+            </p>
+
+            ${
+                newsStories.length === 0
+                ?
+                `
+                <button
+                class="empty-action"
+                onclick="openPublishModal()">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Publish the First Story
+
+                </button>
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    filteredStories.forEach(story=>{
+
+        newsFeed.appendChild(
+            createNewsCard(story)
+        );
+
+    });
+
+}
+
+
+/* ================= CREATE NEWS CARD ================= */
+
+function createNewsCard(story){
+
+    const card =
+    document.createElement("article");
+
+    card.className = "news-card";
+
+
+    const imageHTML =
+    story.image
+    ?
+    `
+    <img
+    class="news-image"
+    src="${escapeHTML(story.image)}"
+    alt="${escapeHTML(story.title)}"
+    onerror="this.style.display='none'">
+    `
+    :
+    `
+    <div
+    class="news-image"
+    style="
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#9ca3af;
+    font-size:40px;
+    ">
+
+        <i class="fa-solid fa-image"></i>
+
+    </div>
+    `;
+
+
+    card.innerHTML = `
+
+    ${imageHTML}
+
+    <div class="news-content">
+
+        <span class="news-category">
+
+            ${escapeHTML(story.category)}
+
+        </span>
+
+        <h2 class="news-title">
+
+            ${escapeHTML(story.title)}
+
+        </h2>
+
+        <p class="news-description">
+
+            ${escapeHTML(story.description)}
+
+        </p>
+
+        <div class="news-meta">
+
+            <span>
+                <i class="fa-regular fa-clock"></i>
+                ${formatDate(story.createdAt)}
+            </span>
+
+            <span>
+                New Story
+            </span>
+
+        </div>
+
+
+        <div class="news-actions">
+
+            <button
+            onclick="likeNews(${story.id})"
+            class="${story.liked ? "liked" : ""}">
+
+                <i class="fa-${
+                    story.liked
+                    ?
+                    "solid"
+                    :
+                    "regular"
+                } fa-heart"></i>
+
+                ${story.likes}
+
+            </button>
+
+
+            <button
+            onclick="commentNews(${story.id})">
+
+                <i class="fa-regular fa-comment"></i>
+
+                ${story.comments}
+
+            </button>
+
+
+            <button
+            onclick="shareNews(${story.id})">
+
+                <i class="fa-solid fa-share"></i>
+
+                ${story.shares}
+
+            </button>
+
+
+            <button
+            onclick="saveNews(${story.id})">
+
+                <i class="fa-${
+                    story.saved
+                    ?
+                    "solid"
+                    :
+                    "regular"
+                } fa-bookmark"></i>
+
+                ${story.saved ? "Saved" : "Save"}
+
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* ================= LIKE ================= */
+
+function likeNews(id){
+
+    const story =
+    newsStories.find(
+        item=>item.id === id
+    );
+
+    if(!story) return;
+
+
+    story.liked =
+    !story.liked;
+
+
+    story.likes +=
+    story.liked ? 1 : -1;
+
+
+    renderNews();
+
+}
+
+
+/* ================= SAVE ================= */
+
+function saveNews(id){
+
+    const story =
+    newsStories.find(
+        item=>item.id === id
+    );
+
+    if(!story) return;
+
+
+    story.saved =
+    !story.saved;
+
+
+    showToast(
+        story.saved
+        ?
+        "Story saved."
+        :
+        "Story removed from saved."
+    );
+
+
+    renderNews();
+
+}
+
+
+/* ================= COMMENT ================= */
+
+function commentNews(id){
+
+    const story =
+    newsStories.find(
+        item=>item.id === id
+    );
+
+    if(!story) return;
+
+
+    const comment =
+    prompt("Write your comment:");
+
+
+    if(comment && comment.trim()){
+
+        story.comments++;
+
+        showToast("Comment added.");
+
+        renderNews();
+
+    }
+
+}
+
+
+/* ================= SHARE ================= */
+
+function shareNews(id){
+
+    const story =
+    newsStories.find(
+        item=>item.id === id
+    );
+
+    if(!story) return;
+
+
+    story.shares++;
+
+
+    const shareText =
+    `${story.title} — Netra News`;
+
+
+    if(
+        navigator.share
+    ){
+
+        navigator.share({
+
+            title:story.title,
+
+            text:shareText,
+
+            url:window.location.href
+
+        }).catch(()=>{});
+
+    }
+
+    else if(
+        navigator.clipboard
+    ){
+
+        navigator.clipboard
+        .writeText(window.location.href);
+
+        showToast(
+            "News link copied."
+        );
+
+    }
+
+    else{
+
+        showToast(
+            "Sharing is not supported on this browser."
+        );
+
+    }
+
+
+    renderNews();
+
+}
+
+
+/* ================= CATEGORY FILTER ================= */
+
+document
+.querySelectorAll(".category")
+.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            document
+            .querySelectorAll(".category")
+            .forEach(btn =>
+                btn.classList.remove("active")
+            );
+
+
+            this.classList.add("active");
+
+
+            currentCategory =
+            this.dataset.category;
+
+
+            renderNews();
+
+        }
+    );
+
+});
+
+
+/* ================= SEARCH ================= */
+
+newsSearch
+.addEventListener(
+    "input",
+    renderNews
+);
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value){
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    value;
+
+    return div.innerHTML;
+
+}
+
+
+/* ================= DATE ================= */
+
+function formatDate(date){
+
+    if(!(date instanceof Date)){
+
+        date =
+        new Date(date);
+
+    }
+
+
+    return date.toLocaleString(
+        undefined,
+        {
+            dateStyle:"medium",
+            timeStyle:"short"
+        }
+    );
+
+}
+
+
+/* ================= START ================= */
+
+renderNews();
+
+</script>
+
+</body>
+</html>
