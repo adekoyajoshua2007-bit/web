@@ -1,0 +1,3454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Netra — Settings</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+/* =========================================================
+   NETRA PROFESSIONAL SETTINGS
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#1877f2;
+    --primary-hover:#0d65d9;
+
+    --background:#f5f7fa;
+    --surface:#ffffff;
+    --surface-2:#f1f4f8;
+
+    --text:#172033;
+    --secondary:#697586;
+
+    --border:#e3e8ef;
+
+    --danger:#e53935;
+    --success:#19a463;
+    --warning:#f59e0b;
+
+    --radius:14px;
+
+    --shadow:
+        0 4px 20px rgba(15,30,50,.06);
+}
+
+body.dark{
+    --background:#0e131a;
+    --surface:#171d26;
+    --surface-2:#212934;
+
+    --text:#f5f7fa;
+    --secondary:#a5afbd;
+
+    --border:#2b3440;
+
+    --shadow:
+        0 4px 20px rgba(0,0,0,.25);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:var(--background);
+    color:var(--text);
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    height:68px;
+
+    background:var(--surface);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+
+    padding:0 4%;
+
+    gap:25px;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+}
+
+.logo{
+    color:var(--primary);
+
+    font-size:30px;
+
+    font-weight:900;
+
+    letter-spacing:-1px;
+
+    cursor:pointer;
+}
+
+.search{
+    width:280px;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    background:var(--surface-2);
+    color:var(--text);
+
+    padding:
+        12px
+        15px
+        12px
+        42px;
+
+    border-radius:25px;
+
+    font-size:14px;
+}
+
+.search i{
+    position:absolute;
+
+    left:16px;
+    top:13px;
+
+    color:var(--secondary);
+}
+
+.nav-links{
+    display:flex;
+    gap:7px;
+    margin:auto;
+}
+
+.nav-btn{
+    width:46px;
+    height:44px;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:transparent;
+
+    color:var(--secondary);
+
+    font-size:19px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+    color:var(--primary);
+    background:var(--surface-2);
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.circle-btn{
+    width:42px;
+    height:42px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:var(--surface-2);
+    color:var(--text);
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+.circle-btn:hover{
+    color:var(--primary);
+}
+
+.nav-avatar{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        2px solid var(--primary);
+
+    background:#dce5f1;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page{
+    max-width:1180px;
+
+    margin:
+        35px
+        auto;
+
+    padding:
+        0 18px
+        80px;
+}
+
+.page-heading{
+    margin-bottom:25px;
+}
+
+.page-heading h1{
+    font-size:31px;
+    margin-bottom:7px;
+}
+
+.page-heading p{
+    color:var(--secondary);
+    font-size:14px;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.settings-layout{
+    display:grid;
+
+    grid-template-columns:
+        260px
+        1fr;
+
+    gap:22px;
+
+    align-items:start;
+}
+
+/* =========================================================
+   SETTINGS NAV
+========================================================= */
+
+.settings-nav{
+    background:var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:9px;
+
+    box-shadow:var(--shadow);
+
+    position:sticky;
+    top:88px;
+}
+
+.settings-nav-title{
+    padding:
+        12px
+        13px
+        8px;
+
+    color:var(--secondary);
+
+    font-size:11px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.8px;
+}
+
+.settings-nav button{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--text);
+
+    padding:12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    font-size:14px;
+
+    margin-bottom:3px;
+
+    transition:.2s;
+}
+
+.settings-nav button i{
+    width:21px;
+
+    text-align:center;
+
+    color:var(--secondary);
+}
+
+.settings-nav button:hover{
+    background:var(--surface-2);
+}
+
+.settings-nav button.active{
+    background:
+        rgba(24,119,242,.10);
+
+    color:var(--primary);
+
+    font-weight:700;
+}
+
+.settings-nav button.active i{
+    color:var(--primary);
+}
+
+.settings-nav button.logout{
+    color:var(--danger);
+
+    margin-top:8px;
+
+    border-top:
+        1px solid var(--border);
+
+    border-radius:0 0 10px 10px;
+
+    padding-top:16px;
+}
+
+.settings-nav button.logout i{
+    color:var(--danger);
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.settings-content{
+    min-width:0;
+}
+
+.settings-section{
+    display:none;
+
+    animation:
+        fadeIn .2s ease;
+}
+
+.settings-section.active{
+    display:block;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(5px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.settings-card{
+    background:var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+    margin-bottom:18px;
+}
+
+.card-header{
+    padding:22px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.card-header h2{
+    font-size:19px;
+    margin-bottom:5px;
+}
+
+.card-header p{
+    color:var(--secondary);
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* =========================================================
+   ACCOUNT PROFILE
+========================================================= */
+
+.profile-header{
+    display:flex;
+
+    align-items:center;
+
+    gap:17px;
+
+    padding:22px;
+}
+
+.profile-photo{
+    width:74px;
+    height:74px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    background:#dce5f1;
+
+    border:
+        3px solid var(--primary);
+}
+
+.profile-details{
+    flex:1;
+}
+
+.profile-details h3{
+    margin-bottom:5px;
+}
+
+.profile-details p{
+    color:var(--secondary);
+
+    font-size:13px;
+}
+
+.edit-profile-btn{
+    border:0;
+
+    background:var(--surface-2);
+
+    color:var(--text);
+
+    padding:10px 14px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+.edit-profile-btn:hover{
+    color:var(--primary);
+}
+
+/* =========================================================
+   SETTING ROW
+========================================================= */
+
+.setting-row{
+    min-height:75px;
+
+    padding:
+        14px
+        22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.setting-row:last-child{
+    border-bottom:0;
+}
+
+.setting-icon{
+    width:43px;
+    height:43px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    background:var(--surface-2);
+
+    color:var(--primary);
+
+    font-size:16px;
+}
+
+.setting-info{
+    flex:1;
+}
+
+.setting-info h3{
+    font-size:14px;
+
+    margin-bottom:4px;
+}
+
+.setting-info p{
+    color:var(--secondary);
+
+    font-size:12px;
+
+    line-height:1.45;
+}
+
+.setting-action{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.chevron{
+    color:var(--secondary);
+    font-size:13px;
+}
+
+/* =========================================================
+   TOGGLE
+========================================================= */
+
+.toggle{
+    width:48px;
+    height:27px;
+
+    position:relative;
+
+    flex-shrink:0;
+}
+
+.toggle input{
+    opacity:0;
+
+    width:0;
+    height:0;
+}
+
+.toggle-slider{
+    position:absolute;
+
+    inset:0;
+
+    border-radius:30px;
+
+    background:#b8c0cb;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.toggle-slider::before{
+    content:"";
+
+    position:absolute;
+
+    width:21px;
+    height:21px;
+
+    left:3px;
+    top:3px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    transition:.25s;
+}
+
+.toggle input:checked+
+.toggle-slider{
+    background:var(--primary);
+}
+
+.toggle input:checked+
+.toggle-slider::before{
+    transform:
+        translateX(21px);
+}
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.select{
+    border:
+        1px solid var(--border);
+
+    background:var(--surface-2);
+
+    color:var(--text);
+
+    padding:
+        9px
+        12px;
+
+    border-radius:9px;
+
+    outline:none;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-btn{
+    border:0;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    padding:
+        10px
+        16px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+.primary-btn:hover{
+    background:var(--primary-hover);
+}
+
+.secondary-btn{
+    border:0;
+
+    background:var(--surface-2);
+
+    color:var(--text);
+
+    padding:
+        10px
+        16px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+.danger-btn{
+    border:0;
+
+    background:
+        rgba(229,57,53,.10);
+
+    color:var(--danger);
+
+    padding:
+        10px
+        16px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+/* =========================================================
+   SECURITY STATUS
+========================================================= */
+
+.security-status{
+    margin:20px;
+
+    padding:15px;
+
+    background:
+        rgba(25,164,99,.08);
+
+    border:
+        1px solid rgba(25,164,99,.2);
+
+    border-radius:10px;
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:flex-start;
+}
+
+.security-status i{
+    color:var(--success);
+    margin-top:2px;
+}
+
+.security-status strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+.security-status span{
+    color:var(--secondary);
+    font-size:12px;
+}
+
+/* =========================================================
+   APPEARANCE PREVIEW
+========================================================= */
+
+.theme-preview{
+    padding:20px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+}
+
+.theme-card{
+    border:
+        2px solid var(--border);
+
+    border-radius:12px;
+
+    padding:16px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.theme-card:hover{
+    border-color:var(--primary);
+}
+
+.theme-card.selected{
+    border-color:var(--primary);
+
+    background:
+        rgba(24,119,242,.06);
+}
+
+.theme-demo{
+    height:90px;
+
+    border-radius:9px;
+
+    margin-bottom:12px;
+
+    display:flex;
+
+    gap:8px;
+
+    padding:10px;
+}
+
+.light-demo{
+    background:#f1f3f6;
+}
+
+.light-demo div{
+    background:#fff;
+}
+
+.dark-demo{
+    background:#10141b;
+}
+
+.dark-demo div{
+    background:#1b222c;
+}
+
+.theme-demo div{
+    flex:1;
+
+    border-radius:6px;
+}
+
+.theme-card strong{
+    font-size:13px;
+}
+
+/* =========================================================
+   DATA / DANGER
+========================================================= */
+
+.danger-card{
+    border-color:
+        rgba(229,57,53,.25);
+}
+
+.danger-card .card-header h2{
+    color:var(--danger);
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(0,0,0,.65);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:5000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+
+    max-width:520px;
+
+    background:var(--surface);
+
+    border-radius:17px;
+
+    padding:24px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+}
+
+.modal-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    font-size:20px;
+}
+
+.close-btn{
+    width:38px;
+    height:38px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:var(--surface-2);
+
+    color:var(--text);
+
+    cursor:pointer;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+
+    border:
+        1px solid var(--border);
+
+    outline:none;
+
+    background:var(--surface-2);
+
+    color:var(--text);
+
+    border-radius:9px;
+
+    padding:12px;
+
+    font-family:inherit;
+}
+
+.form-group textarea{
+    min-height:100px;
+
+    resize:vertical;
+}
+
+.modal-actions{
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+/* =========================================================
+   CONFIRM MODAL
+========================================================= */
+
+.confirm-icon{
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:
+        rgba(229,57,53,.1);
+
+    color:var(--danger);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin:0 auto 15px;
+
+    font-size:23px;
+}
+
+.confirm-box{
+    text-align:center;
+}
+
+.confirm-box p{
+    color:var(--secondary);
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    margin-top:8px;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    right:20px;
+    bottom:25px;
+
+    background:#172033;
+
+    color:#fff;
+
+    padding:
+        13px
+        17px;
+
+    border-radius:10px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.2);
+
+    transform:
+        translateY(90px);
+
+    opacity:0;
+
+    transition:.3s;
+
+    z-index:6000;
+
+    font-size:13px;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translateY(0);
+}
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+.mobile-nav{
+    display:none;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:850px){
+
+    .navbar{
+        padding:0 15px;
+        gap:10px;
+    }
+
+    .search,
+    .nav-links{
+        display:none;
+    }
+
+    .nav-actions{
+        margin-left:auto;
+    }
+
+    .page{
+        margin-top:22px;
+        padding:0 10px 80px;
+    }
+
+    .settings-layout{
+        display:block;
+    }
+
+    .settings-nav{
+        position:static;
+
+        display:flex;
+
+        overflow-x:auto;
+
+        margin-bottom:15px;
+
+        gap:3px;
+    }
+
+    .settings-nav-title{
+        display:none;
+    }
+
+    .settings-nav button{
+        min-width:max-content;
+
+        width:auto;
+
+        margin:0;
+    }
+
+    .settings-nav button span{
+        display:none;
+    }
+
+    .settings-nav button.logout{
+        border-top:0;
+        margin-top:0;
+        padding-top:12px;
+    }
+
+    .theme-preview{
+        grid-template-columns:1fr;
+    }
+
+    .setting-row{
+        padding:
+            14px;
+    }
+
+    .setting-info p{
+        max-width:300px;
+    }
+
+    .mobile-nav{
+        display:flex;
+
+        position:fixed;
+
+        left:0;
+        right:0;
+        bottom:0;
+
+        height:62px;
+
+        background:var(--surface);
+
+        border-top:
+            1px solid var(--border);
+
+        z-index:2000;
+    }
+
+    .mobile-nav button{
+        flex:1;
+
+        border:0;
+
+        background:transparent;
+
+        color:var(--secondary);
+
+        font-size:18px;
+
+        cursor:pointer;
+    }
+
+    .mobile-nav button.active{
+        color:var(--primary);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="navbar">
+
+    <div
+        class="logo"
+        onclick="goHome()">
+
+        Netra
+
+    </div>
+
+
+    <div class="search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            id="globalSearch"
+            type="text"
+            placeholder="Search Netra..."
+            onkeydown="searchNetra(event)">
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <button
+            class="nav-btn"
+            onclick="goHomePage(goHomePage)"
+            title="HomePage">
+
+            <i class="fa-solid fa-house"></i>
+
+        </button>
+
+
+        <button
+            class="nav-btn"
+            onclick="comingSoon('People')"
+            title="People">
+
+            <i class="fa-solid fa-user-group"></i>
+
+        </button>
+
+
+        <button
+            class="nav-btn"
+            onclick="openMessages()"
+            title="Messages">
+
+            <i class="fa-solid fa-message"></i>
+
+        </button>
+
+
+        <button
+            class="nav-btn"
+            onclick="comingSoon('Notifications')"
+            title="Notifications">
+
+            <i class="fa-solid fa-bell"></i>
+
+        </button>
+
+
+        <button
+            class="nav-btn active"
+            title="Settings">
+
+            <i class="fa-solid fa-gear"></i>
+
+        </button>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+        <button
+            class="circle-btn"
+            onclick="toggleTheme()"
+            id="themeButton"
+            title="Toggle theme">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+
+        <button
+            class="circle-btn"
+            onclick="comingSoon('Notifications')"
+            title="Notifications">
+
+            <i class="fa-solid fa-bell"></i>
+
+        </button>
+
+
+        <img
+            id="navAvatar"
+            class="nav-avatar"
+            alt="Profile">
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     PAGE
+========================================================= -->
+
+<main class="page">
+
+    <div class="page-heading">
+
+        <h1>Settings</h1>
+
+        <p>
+            Manage your account, privacy, security and Netra experience.
+        </p>
+
+    </div>
+
+
+    <div class="settings-layout">
+
+
+        <!-- =================================================
+             SETTINGS MENU
+        ================================================== -->
+
+        <aside class="settings-nav">
+
+            <div class="settings-nav-title">
+                Settings
+            </div>
+
+
+            <button
+                class="active"
+                onclick="showSection('account',this)">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>Account</span>
+
+            </button>
+
+
+            <button
+                onclick="showSection('privacy',this)">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>Privacy</span>
+
+            </button>
+
+
+            <button
+                onclick="showSection('security',this)">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <span>Security</span>
+
+            </button>
+
+
+            <button
+                onclick="showSection('notifications',this)">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>Notifications</span>
+
+            </button>
+
+
+            <button
+                onclick="showSection('appearance',this)">
+
+                <i class="fa-solid fa-palette"></i>
+
+                <span>Appearance</span>
+
+            </button>
+
+
+            <button
+                onclick="showSection('language',this)">
+
+                <i class="fa-solid fa-language"></i>
+
+                <span>Language</span>
+
+            </button>
+
+
+            <button
+                onclick="showSection('support',this)">
+
+                <i class="fa-solid fa-circle-question"></i>
+
+                <span>Help & Support</span>
+
+            </button>
+
+
+            <button
+                class="logout"
+                onclick="logout()">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Log Out</span>
+
+            </button>
+
+        </aside>
+
+
+
+        <!-- =================================================
+             SETTINGS CONTENT
+        ================================================== -->
+
+        <section class="settings-content">
+
+
+            <!-- =================================================
+                 ACCOUNT
+            ================================================== -->
+
+            <div
+                class="settings-section active"
+                id="account">
+
+
+                <div class="settings-card">
+
+                    <div class="profile-header">
+
+                        <img
+                            id="profilePhoto"
+                            class="profile-photo"
+                            alt="Profile photo">
+
+                        <div class="profile-details">
+
+                            <h3 id="profileName">
+                                Your Name
+                            </h3>
+
+                            <p id="profileUsername">
+                                @username
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="edit-profile-btn"
+                            onclick="openEditProfile()">
+
+                            <i class="fa-solid fa-pen"></i>
+                            Edit
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="openEditProfile()"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+
+                            <i class="fa-solid fa-user-pen"></i>
+
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Edit profile</h3>
+
+                            <p>
+                                Update your name, username and profile information.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right chevron"></i>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="showInfo('Account information')"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+
+                            <i class="fa-solid fa-id-card"></i>
+
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Account information</h3>
+
+                            <p>
+                                Manage your email, birthday and account details.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right chevron"></i>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="downloadData()"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+
+                            <i class="fa-solid fa-download"></i>
+
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Download your information</h3>
+
+                            <p>
+                                Download a copy of your Netra profile settings.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right chevron"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-card danger-card">
+
+                    <div class="card-header">
+
+                        <h2>Account actions</h2>
+
+                        <p>
+                            These actions can affect your account.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="confirmDelete()"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+
+                            <i class="fa-solid fa-user-slash"></i>
+
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Delete account</h3>
+
+                            <p>
+                                Permanently remove your local Netra account data.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right chevron"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PRIVACY
+            ================================================== -->
+
+            <div
+                class="settings-section"
+                id="privacy">
+
+
+                <div class="settings-card">
+
+                    <div class="card-header">
+
+                        <h2>Privacy</h2>
+
+                        <p>
+                            Decide who can see and interact with your content.
+                        </p>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Private account</h3>
+
+                            <p>
+                                Require approval before people can follow you.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="privateAccount"
+                                type="checkbox"
+                                onchange="saveSetting('privateAccount',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Profile visibility</h3>
+
+                            <p>
+                                Control whether your profile can be discovered.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="profileVisibility"
+                                type="checkbox"
+                                checked
+                                onchange="saveSetting('profileVisibility',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Allow comments</h3>
+
+                            <p>
+                                Let people comment on your posts.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="allowComments"
+                                type="checkbox"
+                                checked
+                                onchange="saveSetting('allowComments',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Friend requests</h3>
+
+                            <p>
+                                Allow people to send you friend requests.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="friendRequests"
+                                type="checkbox"
+                                checked
+                                onchange="saveSetting('friendRequests',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SECURITY
+            ================================================== -->
+
+            <div
+                class="settings-section"
+                id="security">
+
+
+                <div class="settings-card">
+
+                    <div class="card-header">
+
+                        <h2>Security</h2>
+
+                        <p>
+                            Keep your Netra account protected.
+                        </p>
+
+                    </div>
+
+
+                    <div class="security-status">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <div>
+
+                            <strong>Account security</strong>
+
+                            <span>
+                                Your local settings are currently protected.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="changePassword()"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Change password</h3>
+
+                            <p>
+                                Create a new password for your account.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right chevron"></i>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-shield"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Two-factor authentication</h3>
+
+                            <p>
+                                Add an extra layer of protection when signing in.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="twoFactor"
+                                type="checkbox"
+                                onchange="saveSetting('twoFactor',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="showInfo('Login activity')"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Login activity</h3>
+
+                            <p>
+                                Review devices that have accessed your account.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right chevron"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 NOTIFICATIONS
+            ================================================== -->
+
+            <div
+                class="settings-section"
+                id="notifications">
+
+
+                <div class="settings-card">
+
+                    <div class="card-header">
+
+                        <h2>Notifications</h2>
+
+                        <p>
+                            Choose which activities you want to hear about.
+                        </p>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Push notifications</h3>
+
+                            <p>
+                                Receive notifications about activity on Netra.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="pushNotifications"
+                                type="checkbox"
+                                checked
+                                onchange="saveSetting('pushNotifications',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Likes and reactions</h3>
+
+                            <p>
+                                Get notified when people react to your content.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="likeNotifications"
+                                type="checkbox"
+                                checked
+                                onchange="saveSetting('likeNotifications',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-comment-dots"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Comments</h3>
+
+                            <p>
+                                Get notified when someone comments on your posts.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="commentNotifications"
+                                type="checkbox"
+                                checked
+                                onchange="saveSetting('commentNotifications',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-user-group"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Friend requests</h3>
+
+                            <p>
+                                Get notified about new friend requests.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="friendNotifications"
+                                type="checkbox"
+                                checked
+                                onchange="saveSetting('friendNotifications',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 APPEARANCE
+            ================================================== -->
+
+            <div
+                class="settings-section"
+                id="appearance">
+
+
+                <div class="settings-card">
+
+                    <div class="card-header">
+
+                        <h2>Appearance</h2>
+
+                        <p>
+                            Customize how Netra looks.
+                        </p>
+
+                    </div>
+
+
+                    <div class="theme-preview">
+
+                        <div
+                            class="theme-card"
+                            id="lightTheme"
+                            onclick="selectTheme('light')">
+
+                            <div class="theme-demo light-demo">
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                            </div>
+
+                            <strong>
+                                <i class="fa-solid fa-sun"></i>
+                                Light
+                            </strong>
+
+                        </div>
+
+
+                        <div
+                            class="theme-card"
+                            id="darkTheme"
+                            onclick="selectTheme('dark')">
+
+                            <div class="theme-demo dark-demo">
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                            </div>
+
+                            <strong>
+                                <i class="fa-solid fa-moon"></i>
+                                Dark
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-compress"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Compact interface</h3>
+
+                            <p>
+                                Use smaller spacing throughout the interface.
+                            </p>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input
+                                id="compactMode"
+                                type="checkbox"
+                                onchange="saveSetting('compactMode',this.checked)">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LANGUAGE
+            ================================================== -->
+
+            <div
+                class="settings-section"
+                id="language">
+
+
+                <div class="settings-card">
+
+                    <div class="card-header">
+
+                        <h2>Language & Region</h2>
+
+                        <p>
+                            Choose how information is displayed on Netra.
+                        </p>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Language</h3>
+
+                            <p>
+                                Select your preferred Netra language.
+                            </p>
+
+                        </div>
+
+                        <select
+                            id="languageSelect"
+                            class="select"
+                            onchange="saveLanguage(this.value)">
+
+                            <option value="English">
+                                English
+                            </option>
+
+                            <option value="Yoruba">
+                                Yoruba
+                            </option>
+
+                            <option value="French">
+                                French
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-earth-africa"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Region</h3>
+
+                            <p>
+                                Choose your preferred regional format.
+                            </p>
+
+                        </div>
+
+                        <select
+                            id="regionSelect"
+                            class="select"
+                            onchange="saveLanguage(this.value)">
+
+                            <option>Nigeria</option>
+                            <option>Ghana</option>
+                            <option>United Kingdom</option>
+                            <option>United States</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SUPPORT
+            ================================================== -->
+
+            <div
+                class="settings-section"
+                id="support">
+
+
+                <div class="settings-card">
+
+                    <div class="card-header">
+
+                        <h2>Help & Support</h2>
+
+                        <p>
+                            Find answers and contact Netra support.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="showInfo('Help Center')"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Help Center</h3>
+
+                            <p>
+                                Find answers to common questions.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right chevron"></i>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="showInfo('Report a problem')"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>Report a problem</h3>
+
+                            <p>
+                                Tell Netra about something that isn't working.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right chevron"></i>
+
+                    </div>
+
+
+                    <div
+                        class="setting-row"
+                        onclick="showInfo('About Netra')"
+                        style="cursor:pointer">
+
+                        <div class="setting-icon">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+
+                        <div class="setting-info">
+
+                            <h3>About Netra</h3>
+
+                            <p>
+                                Netra — Connect. Share. Belong.
+                            </p>
+
+                        </div>
+
+                        <span class="chevron">
+                            v1.0.0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     MOBILE NAV
+========================================================= -->
+
+<nav class="mobile-nav">
+
+    <button onclick="goHome()">
+        <i class="fa-solid fa-house"></i>
+    </button>
+
+    <button onclick="comingSoon('People')">
+        <i class="fa-solid fa-user-group"></i>
+    </button>
+
+    <button onclick="comingSoon('Create')">
+        <i class="fa-solid fa-circle-plus"></i>
+    </button>
+
+    <button onclick="openMessages()">
+        <i class="fa-solid fa-message"></i>
+    </button>
+
+    <button class="active">
+        <i class="fa-solid fa-gear"></i>
+    </button>
+
+</nav>
+
+
+
+<!-- =========================================================
+     EDIT PROFILE MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="editProfileModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>Edit Profile</h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal('editProfileModal')">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Display name
+            </label>
+
+            <input
+                id="editName"
+                type="text"
+                placeholder="Your name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Username
+            </label>
+
+            <input
+                id="editUsername"
+                type="text"
+                placeholder="username">
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="secondary-btn"
+                onclick="closeModal('editProfileModal')">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="saveProfile()">
+
+                <i class="fa-solid fa-check"></i>
+                Save
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     CONFIRM MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="confirmModal">
+
+    <div class="modal-box confirm-box">
+
+        <div class="confirm-icon">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+        <h2>Delete account?</h2>
+
+        <p>
+            This will remove your locally stored Netra
+            profile and settings from this browser.
+        </p>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="secondary-btn"
+                onclick="closeModal('confirmModal')">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="danger-btn"
+                onclick="deleteAccount()">
+
+                Delete account
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MESSAGE MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="messageModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>Messages</h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal('messageModal')">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div style="
+            text-align:center;
+            padding:30px 10px;
+        ">
+
+            <div class="confirm-icon"
+                 style="
+                    background:rgba(24,119,242,.1);
+                    color:var(--primary);
+                 ">
+
+                <i class="fa-solid fa-message"></i>
+
+            </div>
+
+            <h3>No conversations yet</h3>
+
+            <p style="
+                color:var(--secondary);
+                margin-top:8px;
+                line-height:1.6;
+                font-size:13px;
+            ">
+
+                Your conversations will appear here
+                when you start connecting with people.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   NETRA SETTINGS JAVASCRIPT
+========================================================= */
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+const defaultAvatar =
+"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%23dce5f1'/%3E%3Ccircle cx='150' cy='110' r='55' fill='%239aa9bb'/%3E%3Cpath d='M55 280c10-70 55-105 95-105s85 35 95 105' fill='%239aa9bb'/%3E%3C/svg%3E";
+
+
+let profile =
+JSON.parse(
+    localStorage.getItem("netraProfile")
+) || {
+
+    name:"Your Name",
+
+    username:"username",
+
+    avatar:defaultAvatar
+
+};
+
+
+/* =========================================================
+   LOAD PROFILE
+========================================================= */
+
+function loadProfile(){
+
+    document
+        .getElementById("profileName")
+        .textContent =
+        profile.name;
+
+
+    document
+        .getElementById("profileUsername")
+        .textContent =
+        "@" + profile.username;
+
+
+    document
+        .getElementById("profilePhoto")
+        .src =
+        profile.avatar;
+
+
+    document
+        .getElementById("navAvatar")
+        .src =
+        profile.avatar;
+
+}
+
+
+/* =========================================================
+   EDIT PROFILE
+========================================================= */
+
+function openEditProfile(){
+
+    document
+        .getElementById("editName")
+        .value =
+        profile.name;
+
+
+    document
+        .getElementById("editUsername")
+        .value =
+        profile.username;
+
+
+    document
+        .getElementById("editProfileModal")
+        .classList.add("show");
+
+}
+
+
+function saveProfile(){
+
+    const name =
+        document
+        .getElementById("editName")
+        .value
+        .trim();
+
+
+    const username =
+        document
+        .getElementById("editUsername")
+        .value
+        .trim()
+        .replace(/\s+/g,"");
+
+
+    if(!name){
+
+        showToast(
+            "Please enter your name"
+        );
+
+        return;
+
+    }
+
+
+    if(!username){
+
+        showToast(
+            "Please enter a username"
+        );
+
+        return;
+
+    }
+
+
+    profile.name =
+        name;
+
+    profile.username =
+        username;
+
+
+    localStorage.setItem(
+        "netraProfile",
+        JSON.stringify(profile)
+    );
+
+
+    loadProfile();
+
+
+    closeModal(
+        "editProfileModal"
+    );
+
+
+    showToast(
+        "Profile updated successfully"
+    );
+
+}
+
+
+/* =========================================================
+   SETTINGS NAVIGATION
+========================================================= */
+
+function showSection(
+    id,
+    button
+){
+
+    document
+        .querySelectorAll(
+            ".settings-section"
+        )
+        .forEach(section => {
+
+            section.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const section =
+        document.getElementById(id);
+
+
+    if(section){
+
+        section.classList.add(
+            "active"
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            ".settings-nav button"
+        )
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    button.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =========================================================
+   SAVE SETTINGS
+========================================================= */
+
+function saveSetting(
+    key,
+    value
+){
+
+    localStorage.setItem(
+        "netraSetting_" + key,
+        value
+    );
+
+
+    showToast(
+        value
+        ? "Setting enabled"
+        : "Setting disabled"
+    );
+
+}
+
+
+/* =========================================================
+   LOAD SETTINGS
+========================================================= */
+
+function loadSettings(){
+
+    const settings = [
+
+        "privateAccount",
+        "profileVisibility",
+        "allowComments",
+        "friendRequests",
+        "twoFactor",
+        "pushNotifications",
+        "likeNotifications",
+        "commentNotifications",
+        "friendNotifications",
+        "compactMode"
+
+    ];
+
+
+    settings.forEach(key => {
+
+        const saved =
+            localStorage.getItem(
+                "netraSetting_" + key
+            );
+
+
+        if(saved !== null){
+
+            const element =
+                document.getElementById(key);
+
+
+            if(element){
+
+                element.checked =
+                    saved === "true";
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function selectTheme(
+    theme
+){
+
+    const dark =
+        theme === "dark";
+
+
+    document.body
+        .classList
+        .toggle(
+            "dark",
+            dark
+        );
+
+
+    localStorage.setItem(
+        "netraTheme",
+        theme
+    );
+
+
+    document
+        .getElementById("darkTheme")
+        .classList
+        .toggle(
+            "selected",
+            dark
+        );
+
+
+    document
+        .getElementById("lightTheme")
+        .classList
+        .toggle(
+            "selected",
+            !dark
+        );
+
+
+    document
+        .getElementById("darkMode")
+        ?.classList;
+
+
+    updateThemeIcon();
+
+
+    showToast(
+        dark
+        ? "Dark theme selected"
+        : "Light theme selected"
+    );
+
+}
+
+
+function toggleTheme(){
+
+    const dark =
+        !document.body
+        .classList
+        .contains("dark");
+
+
+    selectTheme(
+        dark
+        ? "dark"
+        : "light"
+    );
+
+}
+
+
+function updateThemeIcon(){
+
+    const button =
+        document.getElementById(
+            "themeButton"
+        );
+
+
+    const dark =
+        document.body
+        .classList
+        .contains("dark");
+
+
+    button.innerHTML =
+        dark
+        ?
+        '<i class="fa-solid fa-sun"></i>'
+        :
+        '<i class="fa-solid fa-moon"></i>';
+
+}
+
+
+function loadTheme(){
+
+    const theme =
+        localStorage.getItem(
+            "netraTheme"
+        ) || "light";
+
+
+    selectThemeSilently(
+        theme
+    );
+
+}
+
+
+function selectThemeSilently(
+    theme
+){
+
+    const dark =
+        theme === "dark";
+
+
+    document.body
+        .classList
+        .toggle(
+            "dark",
+            dark
+        );
+
+
+    document
+        .getElementById("darkTheme")
+        .classList
+        .toggle(
+            "selected",
+            dark
+        );
+
+
+    document
+        .getElementById("lightTheme")
+        .classList
+        .toggle(
+            "selected",
+            !dark
+        );
+
+
+    updateThemeIcon();
+
+}
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function saveLanguage(
+    value
+){
+
+    localStorage.setItem(
+        "netraLanguage",
+        value
+    );
+
+
+    showToast(
+        "Preference saved"
+    );
+
+}
+
+
+function loadLanguage(){
+
+    const language =
+        localStorage.getItem(
+            "netraLanguage"
+        );
+
+
+    if(language){
+
+        const select =
+            document.getElementById(
+                "languageSelect"
+            );
+
+
+        if(
+            [...select.options]
+            .some(
+                option =>
+                option.value === language
+            )
+        ){
+
+            select.value =
+                language;
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   DOWNLOAD DATA
+========================================================= */
+
+function downloadData(){
+
+    const data = {
+
+        profile:profile,
+
+        settings:{},
+
+        downloadedAt:
+            new Date().toISOString()
+
+    };
+
+
+    Object.keys(localStorage)
+        .forEach(key => {
+
+            if(
+                key.startsWith(
+                    "netraSetting_"
+                )
+            ){
+
+                data.settings[key] =
+                    localStorage.getItem(key);
+
+            }
+
+        });
+
+
+    const blob =
+        new Blob(
+            [
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:"application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href =
+        url;
+
+    link.download =
+        "netra-account-data.json";
+
+
+    link.click();
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+
+    showToast(
+        "Your information has been downloaded"
+    );
+
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+function changePassword(){
+
+    showToast(
+        "Password management will connect to Firebase Authentication"
+    );
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+function confirmDelete(){
+
+    document
+        .getElementById(
+            "confirmModal"
+        )
+        .classList.add("show");
+
+}
+
+
+function deleteAccount(){
+
+    localStorage.removeItem(
+        "netraProfile"
+    );
+
+    localStorage.removeItem(
+        "netraPosts"
+    );
+
+    localStorage.removeItem(
+        "netraTheme"
+    );
+
+    localStorage.removeItem(
+        "netraLanguage"
+    );
+
+
+    Object.keys(localStorage)
+        .filter(
+            key =>
+            key.startsWith(
+                "netraSetting_"
+            )
+        )
+        .forEach(
+            key =>
+            localStorage.removeItem(key)
+        );
+
+
+    closeModal(
+        "confirmModal"
+    );
+
+
+    showToast(
+        "Account data deleted"
+    );
+
+
+    setTimeout(
+        () => {
+
+            window.location.href =
+                "index.html";
+
+        },
+        1000
+    );
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(){
+
+    const answer =
+        confirm(
+            "Are you sure you want to log out?"
+        );
+
+
+    if(!answer)
+        return;
+
+
+    showToast(
+        "Logging out..."
+    );
+
+
+    /*
+       Firebase Authentication will
+       replace this later.
+    */
+
+    setTimeout(
+        () => {
+
+            window.location.href =
+                "index.html";
+
+        },
+        900
+    );
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function closeModal(
+    id
+){
+
+    const modal =
+        document.getElementById(id);
+
+
+    if(modal){
+
+        modal.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if(
+                    event.target === modal
+                ){
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   INFORMATION
+========================================================= */
+
+function showInfo(
+    name
+){
+
+    showToast(
+        name +
+        " is ready to be connected to your Netra backend."
+    );
+
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+function openMessages(){
+
+    document
+        .getElementById(
+            "messageModal"
+        )
+        .classList.add("show");
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchNetra(
+    event
+){
+
+    if(
+        event.key !== "Enter"
+    )
+        return;
+
+
+    const value =
+        event.target.value.trim();
+
+
+    if(!value)
+        return;
+
+
+    showToast(
+        `Searching Netra for "${value}"`
+    );
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function goHome(){
+
+    /*
+       Replace this with your
+       actual homepage filename.
+    */
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+/* =========================================================
+   COMING SOON
+========================================================= */
+
+function comingSoon(
+    name
+){
+
+    showToast(
+        name +
+        " will be connected to Netra backend."
+    );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(
+    message
+){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2600
+        );
+
+}
+
+
+/* =========================================================
+   START APPLICATION
+========================================================= */
+
+loadProfile();
+
+loadSettings();
+
+loadTheme();
+
+loadLanguage();
+
+</script>
+
+</body>
+</html>
